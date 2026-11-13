@@ -1,41 +1,21 @@
 # Start in ChatGPT Work / GPT Cloud
 
-**This task is for the HeyGen → Buffer → YouTube Shorts pipeline.**
+Read [SKILL.md](SKILL.md), [sheet schema](references/sheet-schema.md), [HeyGen controls](references/heygen-controls.md), [Buffer publishing](references/buffer-publishing.md) and [schedulers](references/schedulers.md).
 
-## One paste to resume
-```text
-Read the production skill at:
-https://github.com/Anurag99singh/heygen-youtube-shorts-automation/blob/main/SKILL.md
+Canonical private repository: https://github.com/Anurag99singh/heygen-youtube-shorts-automation
+Live queue: https://docs.google.com/spreadsheets/d/1uWtWc04CIZwGD5EqaE1YBOdkE8UIVU4O8SmZisERlI8/edit
 
-Follow its references, especially sheet-schema, heygen-controls, buffer-publishing and schedulers. The operational ledger is:
-https://docs.google.com/spreadsheets/d/1uWtWc04CIZwGD5EqaE1YBOdkE8UIVU4O8SmZisERlI8/edit
+## Resume prompt
+Read the canonical skill and relevant references through connected GitHub. Inspect the live Google Sheet first. Reconcile existing video/session/post IDs before creating anything. Schedule only through the **Buffer plugin**, not a Buffer browser session. Fetch a fresh direct MP4 from HeyGen, check its expiry covers the actual queue slot plus margin, schedule Automatic / Add to Queue, then retrieve the post to verify media and status. Do not treat temporary URLs as permanent hosting or commit them to GitHub.
 
-Inspect the live Sheet before doing anything. Use existing IDs and approvals; do not duplicate completed videos, scripts or Buffer posts. For new videos always use Anshul -- 17 (voice ID d35557f1a8e24de1a34345cf58a30e51), simple four-scene script, persistent title and <=30 seconds.
+VID-001 is already scheduled: Buffer Post ID `6af6de6cfe8cb9dc190a4a45`, due **13 November 2026, 17:36 IST**, `2026-11-13T12:06:00Z`. Check that exact post; never regenerate or reschedule it as a new post. Its 23.1967-second video and one-off older voice were approved. Write the actual YouTube URL to K and published time to S only after Buffer confirms sent.
 
-First reconcile VID-001: completed video in Sheet J; user accepted that video's different voice, but it still needs Buffer publishing. Download finished MP4 from HeyGen via Work browser and upload it to Buffer's connected YouTube channel in automatic queue mode. Do not pass expiring HeyGen MP4 URL to connector. Once Buffer confirms a scheduled post, update Sheet M and L, then K only after actual publication.
+For future videos use voice **Anshul -- 17**, `d35557f1a8e24de1a34345cf58a30e51`, <=30 seconds, four scenes, full-time title and selected avatar. Honor script E and first-ten-test HeyGen plan I approvals. Edit the same Google Doc for revisions. HeyGen plan review can still require an attended browser; this is separate from Buffer scheduling.
 
-For future videos apply script approval E and plan approval I for first ten tests. Edit the same Google Doc on revisions and use Plan/Chat mode safely in HeyGen's UI. Report exactly what was completed and any outstanding blocker.
-```
+## Existing workers
+- Daily AI Trends for Shorts: 09:00 IST; skill stays in v3.
+- Daily AI Short Script: approximately 10:00 IST, draft only.
+- HeyGen Buffer Handoff: hourly; plugin-based scheduling and sent/error reconciliation.
 
-## Important setup
-- In Work, connect/authorize **GitHub, Google Drive/Sheets/Docs, HeyGen and Buffer**, plus the **browser/cloud computer** for local video upload.
-- The built-in **Chat-mode** browser connector is read-only. It cannot download a file and click Buffer upload. The existing Buffer connector requires a permanent direct video URL.
-- GitHub source is the **private `Anurag99singh/heygen-youtube-shorts-automation` repository**, so the cloud environment must have access to it.
-- Never request secret tokens in a document or commit tokens to GitHub.
-
-## Actual scheduled tasks
-- Existing daily AI Trend Briefing at 09:00 IST.
-- Daily AI Short Script — enabled, about 10:00 IST; draft only, approval required.
-- HeyGen Buffer Handoff — enabled, hourly; status sync, validate and attempt publishing if media-transfer route is available.
-- No sub-hourly HeyGen countdown monitor: work in Plan mode with the user present for first ten tests.
-
-## Completed pilot
-VID-001 finished **23.1967 s**; permanent HeyGen viewing URL is saved in Sheet J. One-video exception accepts original wrong voice. The group default was corrected for future videos. **Buffer upload has not been verified**, so do not claim VID-001 scheduled.
-
-## Buffer prepared draft for VID-001
-An unscheduled Buffer Idea exists with id `6af6d4257438174bb4e4ad74`. Use its prepared title/caption when attaching the downloaded MP4 via browser. It is NOT yet a scheduled YouTube post. First check Buffer channel for an existing post before creating another.
-
-## Latest verified cloud setup — 13 November 2026
-- Canonical private repository migration completed; all 12 files verified on `main`.
-- Cloud browser opened the approved video and downloaded its actual MP4. Buffer's cloud-browser session was signed out; secure sign-in was not completed. No upload or scheduled post was created.
-- Check live Sheet and Buffer again on resume. Complete Buffer browser sign-in, then upload the approved MP4, use the existing Idea caption and Automatic / Add to Queue. Do not generate another video.
+## Setup
+Connect GitHub, Google Drive/Sheets/Docs, HeyGen and Buffer. No Buffer browser sign-in is required for the verified plugin route. Do not store passwords, tokens or signed media URLs in the repository.

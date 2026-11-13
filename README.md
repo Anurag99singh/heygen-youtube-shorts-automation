@@ -14,7 +14,7 @@ This folder contains a self-contained operational reference for the user's **AI 
 | HeyGen Video Agent | https://app.heygen.com/video-agent |
 | Buffer YouTube channel | https://publish.buffer.com/channels/6af6b7bf62b70b94b016cbe8/schedule |
 
-## What is automated vs. what still needs Work browser
+## Workflow and approval gates
 
 | Phase | Normal route | Required gate |
 | --- | --- | --- |
@@ -23,11 +23,11 @@ This folder contains a self-contained operational reference for the user's **AI 
 | HeyGen plan | Work browser Plan/Chat mode | Plan review I=APPROVE, first 10 tests |
 | Render | HeyGen Video Agent | Explicit approval/override; no silent auto-render |
 | Video status / metadata | HeyGen connector | Check exact lines, voice ID, duration ≤30s |
-| Stable MP4 and upload | Work browser: HeyGen download → Buffer upload; or stable direct public media URL | Expiring signed HeyGen URL invalid for Buffer connector |
+| Video media transfer | Fresh HeyGen direct MP4 → Buffer plugin | Check expiry covers queue slot plus margin; verify saved video asset |
 | Scheduling | Buffer automatic addToQueue | Save Buffer Post ID M and status L |
 | Publication verification | Buffer list/get posts | Actual YouTube link in K only after sent |
 
-The **current connector cannot upload raw MP4 bytes to Buffer** and the HeyGen response link is an expiring signed URL. This is not silently solved by a scheduler; run the upload in ChatGPT Work browser, or provide a tested permanent public direct MP4 endpoint.
+Use the **Buffer plugin for all scheduling**, without a Buffer browser login. On 13 November 2026, Buffer accepted the fresh signed HeyGen MP4 and scheduled VID-001. Signed URLs remain temporary: check expiry against the actual queue time, verify the saved post and media, and reconcile publication. See [Buffer publishing](references/buffer-publishing.md).
 
 ## Important decisions
 
@@ -41,10 +41,13 @@ The **current connector cannot upload raw MP4 bytes to Buffer** and the HeyGen r
 
 ## Start a fresh ChatGPT Work session
 
-> Read this skill file and the relevant references. Inspect the live Google Sheet. Work only on the next eligible video row; do not re-create an already-rendered or already-scheduled video. For script revisions update the same Google Doc. Maintain ≤30 seconds, persistent title, exact narration, selected avatar and fixed voice. During first ten tests use a paused HeyGen Plan/Chat approval before render unless the user explicitly overrides for that row. After completed video, update Sheet J immediately; use Work browser to upload the downloaded MP4 into Buffer where the connector lacks stable public media, and record scheduled/published IDs and URLs. Report verified results, not assumptions.
+> Read this skill file and the relevant references. Inspect the live Google Sheet. Work only on the next eligible video row; do not re-create an already-rendered or already-scheduled video. For script revisions update the same Google Doc. Maintain ≤30 seconds, persistent title, exact narration, selected avatar and fixed voice. During first ten tests use a paused HeyGen Plan/Chat approval before render unless the user explicitly overrides for that row. After completed video, update Sheet J immediately; use the Buffer plugin with a fresh direct MP4 and an expiry check, and record scheduled/published IDs and URLs. Report verified results, not assumptions.
 
 ## Repository
 
 Private canonical repository: https://github.com/Anurag99singh/heygen-youtube-shorts-automation
 
 The complete production workflow lives at this repository root. The separate Daily AI Trend Briefing stays in https://github.com/Anurag99singh/consistent-explainer-videos-v3/blob/main/skills/ai-trend-briefing/SKILL.md . Existing v3 workflows remain unchanged.
+
+## Verified pilot schedule
+VID-001: Buffer post `6af6de6cfe8cb9dc190a4a45`, status `scheduled`, 13 November 2026 at **17:36 IST** (`2026-11-13T12:06:00Z`), Automatic / Add to Queue. Retrieved through `get_post` with video asset, YouTube Short metadata and no error. Publication has not yet been confirmed; read live Sheet/Buffer on every run.

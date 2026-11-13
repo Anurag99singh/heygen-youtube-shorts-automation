@@ -1,62 +1,37 @@
-# Buffer → YouTube: robust publishing handoff
+# Buffer → YouTube through the plugin
 
-## Connected service
-- Buffer account: `anuragsinghisgood@gmail.com`, organization `6ae9a6a24fd7379ad1914b12`.
-- YouTube channel ID: `6af6b7bf62b70b94b016cbe8`.
-- Channel: [Anurag Singh](https://www.youtube.com/channel/UCMRdswVU_FY3vugUBGfG0bw).
-- Buffer schedule: https://publish.buffer.com/channels/6af6b7bf62b70b94b016cbe8/schedule
+## Destination and user preference
+- Use the **connected Buffer plugin only** for scheduling. Do not use a Buffer browser session or request a Buffer browser login.
+- Organization: `6ae9a6a24fd7379ad1914b12`.
+- YouTube channel: `6af6b7bf62b70b94b016cbe8`, Anurag Singh.
 - Time zone: Asia/Kolkata.
-- User explicitly prefers **Buffer automatic scheduling**, not ChatGPT Work using YouTube Studio to publish.
+- Automatic publishing; Add to Queue; Science & Technology (28); public; not made for kids; mark AI-generated appropriately.
 
-## Stable media problem
-HeyGen's `get_video` returns a permanent **video page** (`https://app.heygen.com/videos/VIDEO_ID`) plus a **signed temporary MP4 URL** with `Expires=` and `Signature=`. The signed URL expires, and Buffer connector's `create_post` requires **direct public HTTP(S) video media URL that does not expire**. The permanent HeyGen page is not a direct MP4 and cannot be used as `assets[].video.url`.
+## Verified media route
+On 13 November 2026, Buffer `create_post` accepted the fresh direct signed MP4 returned by HeyGen `get_video`. `get_post` subsequently confirmed a video/mp4 asset, duration 23.208s, YouTube Short metadata, scheduled status and no error. The earlier blanket claim that signed HeyGen URLs cannot be sent to Buffer was incorrect.
 
-**Never submit either of these invalid forms to Buffer connector:**
-- temporary signed HeyGen `...mp4?Expires=...`
-- private Drive document or file preview URL, or a HeyGen video page.
+A signed MP4 is **temporary**, not permanent hosting. The pilot source expired about seven days later, well after its scheduled slot. This proves scheduling acceptance; it does not prove successful publication or guarantee every future URL/queue combination.
 
-### Supported option A — ChatGPT Work browser (no additional paid tools)
-1. Open finished HeyGen video page from Sheet J; download MP4 to **Work's cloud computer**.
-2. Open connected Buffer YouTube channel's Schedule UI.
-3. Create YouTube Short post; upload local downloaded MP4 **through Buffer UI**. Don't paste expiring video URL.
-4. Add title and short accurate description with original source. Use **automatic** publishing (not reminder), add to queue or use approved custom slot, category **Science & Technology (28)**, mark AI-generated if appropriate.
-5. Confirm the actual scheduled queue item. Record Buffer Post ID if shown or retrieve via connected Buffer `list_posts`; update Sheet M and L= SCHEDULED. Update K/S only after actual publication.
-6. If Work browser cannot interact with Buffer, stop and report this as a manual browser upload blocker. **Do not fake scheduling.**
+## Runbook
+1. Read the live row and Sheet M; check Buffer posts for duplicate video/title. If M exists, reconcile that post instead of creating another.
+2. Confirm the required approvals and video QA. VID-001 has a video-specific older-voice exception.
+3. Call HeyGen `get_video` for the existing video. Use its actual direct `videoUrl`, never the HeyGen viewing page or private Drive preview. Do not generate a new video.
+4. For a signed URL, parse the expiry and inspect current Buffer channel schedule/queue. Require the expected slot plus at least 24 hours to precede expiry. If validity is too short, obtain a refreshed URL; if it still cannot cover the slot, report the media-validity blocker rather than silently changing publishing mode or creating duplicate posts.
+5. Call Buffer:
+   - `channelId: "6af6b7bf62b70b94b016cbe8"`
+   - `schedulingType: "automatic"`
+   - `mode: "addToQueue"`
+   - `assets: [{video: {url: freshVideoUrl}}]`
+   - approved caption/source and YouTube title/category metadata.
+6. Immediately record actual returned post ID in M and scheduled state in L. Verify through `get_post`: correct channel, actual dueAt, Automatic/Add to Queue, video asset, YouTube settings, status and error.
+7. Compare **actual returned dueAt** plus 24 hours against source expiry again. If outside validity, treat as an unresolved media-validity issue on that same post; do not create a second post or claim readiness.
+8. Do not store the signed URL in GitHub or Sheet Q as durable media. Keep permanent HeyGen page in J. Record post ID, slot and expiry observations in T without the signed URL.
+9. Reconcile with `get_post`. Only after sent, use actual returned YouTube external link in K, timestamp in S, and L=PUBLISHED. On error, record the returned reason; do not resubmit blindly.
 
-### Supported option B — Connector with stable public MP4
-If a user-approved stable publicly downloadable MP4 exists (NOT a signed temporary link), call:
-```text
-Buffer.create_post({
-  channelId: "6af6b7bf62b70b94b016cbe8",
-  schedulingType: "automatic",
-  mode: "addToQueue",
-  text: "MiniMax says its new H3-Image model creates and edits images using multiple references. Source: https://www.minimax.io/blog/minimax-h3-image #AI #Shorts",
-  assets: [{ video: { url: "<STABLE_PUBLIC_DIRECT_MP4>" } }],
-  metadata: {
-    youtube: {
-      title: "MiniMax H3-Image: Fast 4K AI Images #Shorts",
-      categoryId: "28",
-      privacy: "public",
-      madeForKids: false,
-      isAiGenerated: true
-    }
-  }
-})
-```
-This is **pseudocode**, not an HTTP-ready script and not permission to invent the URL.
-
-## Safety/idempotency
-- Check Sheet M is blank and Buffer `list_posts` for existing matching video before creating. If already scheduled, don't create another.
-- Only proceed if the user has authorized publication and all required QA passes (or they explicitly accept a *video-specific* exception).
-- On Buffer success, write M Buffer Post ID and L=SCHEDULED immediately, plus actual scheduled dueAt in T or a relevant notes field.
-- Reconcile Buffer sent status later; populate K with actual YouTube link, S published timestamp and L=PUBLISHED.
-- On failure, keep J video page intact, update T and L=BLOCKED. A completed video is not evidence of a scheduled post.
-- Verify account/channel active before attempting.
-
-## VID-001
-- Video page: https://app.heygen.com/videos/321845ae839b45adb611145293a24e8b
-- Duration 23.1967s; user's explicit exception accepts its older voice just for this test.
-- **2026-11-13 handoff blocker:** only signed expiring MP4 URL is available through HeyGen connector, and Chat-mode Browser integration can read but cannot click/upload. Use Work browser as the direct local-upload route. `SCHEDULED` cannot be recorded until Buffer actually returns a post record.
-
-## Buffer Idea for VID-001 (prepared, not scheduled)
-The connected Buffer organization now contains verified Idea ID `6af6d4257438174bb4e4ad74`, titled `VID-001 · MiniMax H3-Image: Fast 4K AI Images #Shorts`. It contains the approved caption, source and permanent HeyGen page URL. **It does not contain MP4 media and is not a post.** In Work/Buffer browser, use the idea as the caption source and attach the finished downloaded MP4; then schedule via automatic queue and obtain actual Buffer Post ID.
+## VID-001 — verified scheduled record
+- HeyGen video: `321845ae839b45adb611145293a24e8b`; duration 23.1967s.
+- Buffer Idea caption source: `6af6d4257438174bb4e4ad74`. The Idea alone is not a scheduled post.
+- **Actual Buffer post:** `6af6de6cfe8cb9dc190a4a45`.
+- **Due:** 13 November 2026, **17:36 IST** (`2026-11-13T12:06:00Z`).
+- Retrieved status: `scheduled`; no error; video/mp4 asset present; Automatic / Add to Queue.
+- Publication not yet confirmed. Never regenerate or duplicate this post.

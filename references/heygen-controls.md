@@ -32,7 +32,7 @@
 - [ ] No captions/subtitles, no watermark (visual check if needed).
 - [ ] Topic title persists throughout video including transitions, not just scene 1 (frame-level review required where metadata does not expose title visibility).
 - [ ] B-roll supports narration (avoid fake UI presented as real and generic robots).
-- [ ] Final direct media link is stable and valid for Buffer, or use Work browser to upload the actual MP4.
+- [ ] Fetch a fresh direct MP4 through HeyGen and schedule using the Buffer plugin; validate source expiry against actual queue time plus margin and verify saved media/post. No Buffer browser scheduling.
 
 ## Prior failure
 - VID-001 exact scene narration and avatar were correct and duration **23.1967s**, but all scene voice IDs were the old group default. The user **explicitly accepted that video's voice only**. See [test-1-incident.md](test-1-incident.md).

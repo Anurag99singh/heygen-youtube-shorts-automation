@@ -48,7 +48,7 @@ READY
   -> SCHEDULED (M filled with Buffer post ID)
   -> PUBLISHED (K verified YouTube URL)
 ```
-- `BLOCKED` on failed QA, missing stable video asset, unavailable authentication, incorrect voice, render timeout, etc. Leave precise reason in T. User may explicitly accept a one-off exception; record that exception but never change a global quality rule.
+- `BLOCKED` on failed QA, missing usable direct video asset or insufficient source validity, unavailable authentication, incorrect voice, render timeout, etc. Leave precise reason in T. User may explicitly accept a one-off exception; record that exception but never change a global quality rule.
 - `PLAN PAUSED` allowed if HeyGen UI countdown was actually paused. Never fake a pause based on a stop-session API.
 - Mark `RENDERING` only after a real session and job ID exist.
 - Mark `VIDEO READY` the moment HeyGen finishes and J is written, even if Buffer upload remains pending; if publishing is blocked, put that reason in T (or L=BLOCKED after documenting video completion).

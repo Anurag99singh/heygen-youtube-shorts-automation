@@ -49,8 +49,11 @@
     "scheduling_type": "automatic",
     "default_mode": "addToQueue",
     "youtube_category_id": "28",
-    "media_asset_requirement": "stable public direct HTTPS MP4 or use Work browser local MP4 upload",
-    "accepts_expiring_signed_url": false
+    "media_asset_requirement": "fresh direct HTTPS MP4 accepted by Buffer; signed source expiry must cover actual queue slot plus 24h",
+    "accepts_expiring_signed_url": true,
+    "signed_url_policy": "temporary only; fetch fresh, verify expiry and saved post/media; never store signed URLs in GitHub",
+    "scheduling_route": "Buffer plugin only",
+    "browser_scheduling_allowed": false
   },
   "automations": {
     "existing_ai_trends": {
@@ -67,7 +70,7 @@
       "id": "6af6c74482fc8191bd1608e67cdea0ee",
       "cadence": "hourly",
       "enabled": true,
-      "work_browser_access_unverified": true
+      "buffer_plugin_scheduling_verified_on": "2026-11-13"
     }
   },
   "pilot": {
@@ -78,9 +81,11 @@
     "video_page": "https://app.heygen.com/videos/321845ae839b45adb611145293a24e8b",
     "duration_seconds": 23.1967,
     "voice_exception_accepted_only_for_this_video": true,
-    "buffer_scheduled": false,
-    "status": "BLOCKED: approved MP4 downloaded in cloud browser; Buffer cloud-browser sign-in not completed. No scheduled post.",
-    "buffer_idea_id": "6af6d4257438174bb4e4ad74"
+    "buffer_scheduled": true,
+    "status": "SCHEDULED via Buffer plugin; publication not yet confirmed",
+    "buffer_idea_id": "6af6d4257438174bb4e4ad74",
+    "buffer_post_id": "6af6de6cfe8cb9dc190a4a45",
+    "buffer_due_at": "2026-11-13T12:06:00Z"
   },
   "repository": {
     "full_name": "Anurag99singh/heygen-youtube-shorts-automation",
