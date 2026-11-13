@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "workflow_name": "AI Software Shorts — HeyGen Video Agent to Buffer YouTube",
+  "timezone": "Asia/Kolkata",
+  "status_source": "Google Sheet live; never trust cached GitHub statuses",
+  "sources": {
+    "google_sheet": {
+      "id": "1uWtWc04CIZwGD5EqaE1YBOdkE8UIVU4O8SmZisERlI8",
+      "url": "https://docs.google.com/spreadsheets/d/1uWtWc04CIZwGD5EqaE1YBOdkE8UIVU4O8SmZisERlI8/edit",
+      "tabs": [
+        "Video Queue",
+        "Avatar Library",
+        "Settings",
+        "Grok Style Reference"
+      ]
+    },
+    "style_reference_google_doc": "https://docs.google.com/document/d/1aXsLa5MABozi7aBf4vbSmnplPdPyd6mNyRcb-JCkd0w/edit",
+    "existing_trend_skill": "https://github.com/Anurag99singh/consistent-explainer-videos-v3/blob/main/skills/ai-trend-briefing/SKILL.md"
+  },
+  "heygen": {
+    "avatar_group_id": "34dc0457ca4d4eeb92dae5a9e5180bd8",
+    "default_voice": "Anshul -- 17",
+    "default_voice_id": "d35557f1a8e24de1a34345cf58a30e51",
+    "default_voice_verified_on": "2026-11-13",
+    "plan_review_first_videos": 10,
+    "render_connector_is_plan_safe": false,
+    "plan_mode_route": "ChatGPT Work browser, attended review",
+    "known_wrong_voice_id": "7b9850bf42ed4d999891709c3f7341a9"
+  },
+  "shorts": {
+    "platform": "YouTube",
+    "aspect_ratio": "9:16",
+    "maximum_seconds": 30,
+    "target_seconds_range": [
+      27,
+      29
+    ],
+    "scenes": 4,
+    "persistent_title": true,
+    "generated_captions": false,
+    "watermark": false,
+    "music": "subtle",
+    "script_approval_required": true,
+    "one_script_doc_per_video": true
+  },
+  "buffer": {
+    "organization_id": "6ae9a6a24fd7379ad1914b12",
+    "youtube_channel_id": "6af6b7bf62b70b94b016cbe8",
+    "scheduling_type": "automatic",
+    "default_mode": "addToQueue",
+    "youtube_category_id": "28",
+    "media_asset_requirement": "stable public direct HTTPS MP4 or use Work browser local MP4 upload",
+    "accepts_expiring_signed_url": false
+  },
+  "automations": {
+    "existing_ai_trends": {
+      "id": "6af078ea40608191a2adc9c6e9ff0ae4",
+      "cadence": "daily 09:00 IST",
+      "enabled": true
+    },
+    "daily_script_prep": {
+      "id": "6af6d39cf50c8191a087adb5bd1376d4",
+      "cadence": "daily approximately 10:00 IST",
+      "enabled": true
+    },
+    "heygen_buffer_handoff": {
+      "id": "6af6c74482fc8191bd1608e67cdea0ee",
+      "cadence": "hourly",
+      "enabled": true,
+      "work_browser_access_unverified": true
+    }
+  },
+  "pilot": {
+    "id": "VID-001",
+    "script_doc": "https://docs.google.com/document/d/1rcD_N0vOmVrCb0c7zzn6_xx_sojnz8aUcxhfAkfAMTc/edit",
+    "heygen_session_id": "6a996f7aa76d448d8b971bdb51057006",
+    "video_id": "321845ae839b45adb611145293a24e8b",
+    "video_page": "https://app.heygen.com/videos/321845ae839b45adb611145293a24e8b",
+    "duration_seconds": 23.1967,
+    "voice_exception_accepted_only_for_this_video": true,
+    "buffer_scheduled": false,
+    "status": "VIDEO READY; Buffer Idea created, MP4 upload to Buffer UI not yet performed",
+    "buffer_idea_id": "6af6d4257438174bb4e4ad74"
+  },
+  "repository": {
+    "full_name": "Anurag99singh/heygen-youtube-shorts-automation",
+    "visibility": "private",
+    "default_branch": "main",
+    "skill_url": "https://github.com/Anurag99singh/heygen-youtube-shorts-automation/blob/main/SKILL.md"
+  }
+}
