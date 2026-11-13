@@ -1,41 +1,8 @@
-# HeyGen: voice, plans, rendering and QA
+# Current production policy — 13 November 2026
+The user explicitly removed ALL manual script, plan, first-ten-test and final-publication approval gates. Run unattended: daily production starts at **10:00 IST**; daily trend research stays at 09:00 IST. Pick topic, write script, generate through HeyGen Video Agent, monitor, validate and schedule through Buffer plugin for **next day 09:00 IST** without asking for routine approval.
+YouTube description means text BELOW the posted video: store it in V (YouTube Description), title in U. Never append description, hashtags, source footer or a separate caption section to the spoken script/HeyGen Doc. Pass V only to Buffer text. On-video subtitle settings remain unchanged.
+Retain strict 30–35s measured duration, fixed voice d35557f1a8e24de1a34345cf58a30e51, selected/default avatar resolved by exact look ID, factual/visual QA and duplicate prevention. E/I/P are legacy review fields, not eligibility gates; do not write APPROVE pretending a human reviewed. Respect an explicit future user HOLD/REVISE/stop.
+VID-001 was manually removed from Buffer by the user. Keep its recorded IDs as history, mark it intentionally cancelled in notes, exclude it from production/reconciliation retries and do not recreate it. It must not block new daily videos.
 
-## Identity and voice (strict)
-- HeyGen connected workspace: Anshul / account `anshulprojectmgmt@gmail.com`.
-- Private Anshul avatar **group ID** `34dc0457ca4d4eeb92dae5a9e5180bd8`.
-- **REQUIRED every time:** voice **Anshul -- 17**, ID `d35557f1a8e24de1a34345cf58a30e51`, English, ACTIVE.
-- Former wrong voice **Anshul 2026**: `7b9850bf42ed4d999891709c3f7341a9`.
-- Group default voice was changed via `update_avatar_group` and **read-back verified** to `d35557f1a8e24de1a34345cf58a30e51` on 2026-11-13. Still **do not assume** Video Agent obeys the default: VID-001 initially used wrong default despite prompt-level voice request.
-- When a video is ready, `get_video_scenes` and inspect **every scene[].script[].voice_id**, plus `avatar_id` for presenter scenes. Mismatch is a hard failure unless user expressly accepts an exception for that specific video.
-- Avatar look choice comes from Video Queue G and Avatar Library B; never match by ambiguous avatar display name.
-
-## Plan approval: first 10 supervised tests
-1. Script Doc approved E=APPROVE.
-2. In **ChatGPT Work browser**, open HeyGen Video Agent, start a **new Plan / Chat mode** session. Select avatar/voice and 9:16 in the UI.
-3. Paste **only** the approved script Doc body. No artificial instructions before or after. Follow the user's exact scenes, title and narration.
-4. If HeyGen begins a short auto-render countdown, pause it via the **visible HeyGen interface**, then confirm it actually paused. No periodic automation can beat a seconds-long timer reliably.
-5. Show actual video blueprint to user. Save live session H, mark PLAN REVIEW, obtain I=APPROVE; on I=REVISE, revise within **same session**.
-6. The `video_agent_generate` connector **is a generation action**, not a safe plan-only action. It has no Plan/Chat selector; **do not use before plan approval** unless user clearly authorizes a one-time direct render. `stop_video_agent_session` is **not** a countdown pause; it halts the whole agent and can prevent any plan being returned.
-
-## Direct render: only when authorized
-- User may override mandatory plan review **for one specified video**. If yes, call `video_agent_generate` with **prompt equal to exactly the Google Doc body**, `avatarId` equal to the selected look ID; do not add `conversationContext` boilerplate or another wrapper.
-- The tool does not expose a reliable `voiceId` input. Verify group default before rendering and **actual scene voice IDs after**. A request in Doc for consistent voice alone is insufficient to force voice choice.
-- Save `sessionId` in N and returned `video_id` in a J cell note; persist render start time Y before ending the run. Never duplicate the generation to poll.
-- Poll `get_video_agent_session` / `get_video` at reasonable intervals. If pending, record pending; **do not claim a final video exists**.
-- On completion, write **permanent HeyGen viewing page** into Video Queue J immediately, even if Buffer cannot upload yet.
-
-## QA checklist
-- [ ] Actual duration is **30.0–35.0 sec inclusive (target 32–34)** and 9:16.
-- [ ] Four scene scripts match approved narration **exactly**, not paraphrased; no added spoken lines.
-- [ ] Every scene voice ID equals `d35557f1a8e24de1a34345cf58a30e51`, unless a documented single-video exception.
-- [ ] Presenter scene avatar ID equals the selected look ID.
-- [ ] No captions/subtitles, no watermark (visual check if needed).
-- [ ] Topic title persists throughout video including transitions, not just scene 1 (frame-level review required where metadata does not expose title visibility).
-- [ ] B-roll supports narration (avoid fake UI presented as real and generic robots).
-- [ ] Fetch a fresh direct MP4 through HeyGen and schedule using the Buffer plugin; validate source expiry against actual queue time plus margin and verify saved media/post. No Buffer browser scheduling.
-
-## Prior failure
-- VID-001 exact scene narration and avatar were correct and duration **23.1967s**, but all scene voice IDs were the old group default. The user **explicitly accepted that video's voice only**. See [test-1-incident.md](test-1-incident.md).
-
-## Persistent rendering
-Follow [daily-timing.md](daily-timing.md). Renders may take 10 minutes or more. Hourly checks resume the same session/video across runs, update J/Z immediately upon completion, and schedule the approved output for X through Buffer. Do not equate elapsed time with completion. Missing or failed jobs require honest status, not duplicate generation. Existing VID-001's short 23.2s duration is historical and must not be copied as the new target.
+# Unattended generation
+Resolve row G or configured default exact avatar look. Verify group voice before rendering; submit prepared four-scene Doc through video_agent_generate with avatarId. No manual Plan/Chat stage is required. API lacks reliable voiceId override: check every rendered scene voice ID and block mismatches. Save session/video IDs before exiting. Never call stop merely to pause a plan. Monitor same job and use references/daily-timing.md for completion, QA and next-day scheduling. Generation may not preserve exact narration; verify output and block deviations rather than claiming success.

@@ -1,3 +1,9 @@
+# Current production policy — 13 November 2026
+The user explicitly removed ALL manual script, plan, first-ten-test and final-publication approval gates. Run unattended: daily production starts at **10:00 IST**; daily trend research stays at 09:00 IST. Pick topic, write script, generate through HeyGen Video Agent, monitor, validate and schedule through Buffer plugin for **next day 09:00 IST** without asking for routine approval.
+YouTube description means text BELOW the posted video: store it in V (YouTube Description), title in U. Never append description, hashtags, source footer or a separate caption section to the spoken script/HeyGen Doc. Pass V only to Buffer text. On-video subtitle settings remain unchanged.
+Retain strict 30–35s measured duration, fixed voice d35557f1a8e24de1a34345cf58a30e51, selected/default avatar resolved by exact look ID, factual/visual QA and duplicate prevention. E/I/P are legacy review fields, not eligibility gates; do not write APPROVE pretending a human reviewed. Respect an explicit future user HOLD/REVISE/stop.
+VID-001 was manually removed from Buffer by the user. Keep its recorded IDs as history, mark it intentionally cancelled in notes, exclude it from production/reconciliation retries and do not recreate it. It must not block new daily videos.
+
 # Buffer → YouTube through the plugin
 
 ## Destination and user preference
@@ -22,7 +28,7 @@ A signed MP4 is **temporary**, not permanent hosting. The pilot source expired a
    - `schedulingType: "automatic"`
    - `mode: "customScheduled"` and `dueAt` equal to the UTC equivalent of X
    - `assets: [{video: {url: freshVideoUrl}}]`
-   - approved Sheet V caption/source, U title and YouTube category metadata, following [youtube-caption.md](youtube-caption.md).
+   - prepared Sheet V caption/source, U title and YouTube category metadata, following [youtube-caption.md](youtube-caption.md).
 6. Immediately record actual returned post ID in M and scheduled state in L. Verify through `get_post`: correct channel, actual dueAt, Automatic/customScheduled, video asset, YouTube settings, status and error.
 7. Compare **actual returned dueAt (must equal X)** plus 24 hours against source expiry again. If outside validity, treat as an unresolved media-validity issue on that same post; do not create a second post or claim readiness.
 8. Do not store the signed URL in GitHub or Sheet Q as durable media. Keep permanent HeyGen page in J. Record post ID, slot and expiry observations in T without the signed URL.

@@ -1,3 +1,9 @@
+# Current production policy — 13 November 2026
+The user explicitly removed ALL manual script, plan, first-ten-test and final-publication approval gates. Run unattended: daily production starts at **10:00 IST**; daily trend research stays at 09:00 IST. Pick topic, write script, generate through HeyGen Video Agent, monitor, validate and schedule through Buffer plugin for **next day 09:00 IST** without asking for routine approval.
+YouTube description means text BELOW the posted video: store it in V (YouTube Description), title in U. Never append description, hashtags, source footer or a separate caption section to the spoken script/HeyGen Doc. Pass V only to Buffer text. On-video subtitle settings remain unchanged.
+Retain strict 30–35s measured duration, fixed voice d35557f1a8e24de1a34345cf58a30e51, selected/default avatar resolved by exact look ID, factual/visual QA and duplicate prevention. E/I/P are legacy review fields, not eligibility gates; do not write APPROVE pretending a human reviewed. Respect an explicit future user HOLD/REVISE/stop.
+VID-001 was manually removed from Buffer by the user. Keep its recorded IDs as history, mark it intentionally cancelled in notes, exclude it from production/reconciliation retries and do not recreate it. It must not block new daily videos.
+
 # Sheet mapping and state machine
 
 **Sheet URL:** https://docs.google.com/spreadsheets/d/1uWtWc04CIZwGD5EqaE1YBOdkE8UIVU4O8SmZisERlI8/edit
@@ -16,11 +22,9 @@
 | B | Topic | Fact-checked AI-software story |
 | C | Source Article | Original authoritative article URL |
 | D | Script Link | **Same Google Doc URL across revisions** |
-| E | Script Review | PENDING / APPROVE / REVISE |
 | F | Feedback | Human instructions for revision |
 | G | Avatar Look | Unique AVxx label; map through Avatar Library |
 | H | HeyGen Plan | Session URL only when valid, never a misleading stopped session |
-| I | Plan Review | PENDING / APPROVE / REVISE |
 | J | Final Video | Permanent HeyGen viewing-page URL as soon as video completes |
 | K | YouTube URL | Actual public YouTube video after Buffer reports published |
 | L | Status | Workflow state |
@@ -37,7 +41,7 @@
 | Col | Key | Meaning |
 | --- | --- | --- |
 | U | YouTube Title | Approved publishing title; separate from script Doc |
-| V | YouTube Caption | Approved description, source and 2–3 hashtags |
+| V | YouTube Description | Approved description, source and 2–3 hashtags |
 | W | Production Date | India date YYYY-MM-DD; daily idempotency key |
 | X | Target Publish At | Production date + 1 at 09:00 Asia/Kolkata, timezone explicit |
 | Y | Render Started At | Real submission timestamp, not estimated completion |
@@ -52,9 +56,7 @@ The Sheet **can have dropdown validations** for E, G, I, L. Inspect live cell me
 READY
   -> WRITING
   -> SCRIPT REVIEW --(E=REVISE)--> WRITING (same Doc)
-                  --(E=APPROVE)--> HEYGEN PLAN
   -> PLAN REVIEW --(I=REVISE)--> HEYGEN PLAN (same session)
-                 --(I=APPROVE)--> RENDERING
   -> RENDERING
   -> VIDEO READY (J filled with permanent view URL)
   -> SCHEDULED (M filled with Buffer post ID)

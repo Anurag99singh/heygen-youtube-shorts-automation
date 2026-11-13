@@ -1,3 +1,9 @@
+# Current production policy — 13 November 2026
+The user explicitly removed ALL manual script, plan, first-ten-test and final-publication approval gates. Run unattended: daily production starts at **10:00 IST**; daily trend research stays at 09:00 IST. Pick topic, write script, generate through HeyGen Video Agent, monitor, validate and schedule through Buffer plugin for **next day 09:00 IST** without asking for routine approval.
+YouTube description means text BELOW the posted video: store it in V (YouTube Description), title in U. Never append description, hashtags, source footer or a separate caption section to the spoken script/HeyGen Doc. Pass V only to Buffer text. On-video subtitle settings remain unchanged.
+Retain strict 30–35s measured duration, fixed voice d35557f1a8e24de1a34345cf58a30e51, selected/default avatar resolved by exact look ID, factual/visual QA and duplicate prevention. E/I/P are legacy review fields, not eligibility gates; do not write APPROVE pretending a human reviewed. Respect an explicit future user HOLD/REVISE/stop.
+VID-001 was manually removed from Buffer by the user. Keep its recorded IDs as history, mark it intentionally cancelled in notes, exclude it from production/reconciliation retries and do not recreate it. It must not block new daily videos.
+
 # Script-writing template (human-readable HeyGen prompt)
 
 Read the user's [IBM & Microsoft reference](https://docs.google.com/document/d/1aXsLa5MABozi7aBf4vbSmnplPdPyd6mNyRcb-JCkd0w/edit) before writing. Use **simple language**, natural conversational speech, and direct visual instructions. Do not copy the reference's factual claims into unrelated topics. Do not put voice IDs, prompt orchestration, scheduler setup, approval counters or API jargon into the visible script. Those belong in the Sheet/this skill.
@@ -87,8 +93,6 @@ Use the narration exactly as written. Do not add, rewrite or remove spoken lines
 ## Workflow
 1. Select source-backed news story from READY row. Check claims against original article.
 2. Edit existing Doc link in D, or create one only for a new row without a Doc.
-3. Write the Doc link and mark SCRIPT REVIEW; wait for E=APPROVE.
 4. If E=REVISE, use feedback F to edit **the same Doc** and set E back to PENDING.
 5. HeyGen submission after approval is **only the Doc body text**, without ChatGPT wrapper/preamble.
 
-Before review, draft the YouTube title and description separately in Sheet U/V using [youtube-caption.md](youtube-caption.md). Do not append posting copy to the bare HeyGen script Doc. Estimate timings to 33 seconds; actual measured output must pass 30–35 seconds, otherwise request a revision and approval rather than silently padding, speeding speech or regenerating.

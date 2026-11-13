@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "workflow_name": "AI Software Shorts — HeyGen Video Agent to Buffer YouTube",
   "timezone": "Asia/Kolkata",
   "status_source": "Google Sheet live; never trust cached GitHub statuses",
@@ -22,9 +22,9 @@
     "default_voice": "Anshul -- 17",
     "default_voice_id": "d35557f1a8e24de1a34345cf58a30e51",
     "default_voice_verified_on": "2026-11-13",
-    "plan_review_first_videos": 10,
+    "plan_review_first_videos": 0,
     "render_connector_is_plan_safe": false,
-    "plan_mode_route": "ChatGPT Work browser, attended review",
+    "plan_mode_route": "Unattended HeyGen Video Agent generation; no manual plan gate",
     "known_wrong_voice_id": "7b9850bf42ed4d999891709c3f7341a9"
   },
   "shorts": {
@@ -40,13 +40,15 @@
     "generated_captions": false,
     "watermark": false,
     "music": "subtle",
-    "script_approval_required": true,
+    "script_approval_required": false,
     "one_script_doc_per_video": true,
     "minimum_seconds": 30,
     "spoken_words_guidance": [
       65,
       80
-    ]
+    ],
+    "plan_approval_required": false,
+    "publication_approval_required": false
   },
   "buffer": {
     "organization_id": "6ae9a6a24fd7379ad1914b12",
@@ -71,7 +73,7 @@
     },
     "daily_script_prep": {
       "id": "6af6d39cf50c8191a087adb5bd1376d4",
-      "cadence": "daily 09:00 IST exact schedule",
+      "cadence": "daily 10:00 IST exact schedule; topic through render submission",
       "enabled": true
     },
     "heygen_buffer_handoff": {
@@ -89,13 +91,14 @@
     "video_page": "https://app.heygen.com/videos/321845ae839b45adb611145293a24e8b",
     "duration_seconds": 23.1967,
     "voice_exception_accepted_only_for_this_video": true,
-    "buffer_scheduled": null,
-    "status": "BLOCKED: scheduling/publication currently unverified; retain recorded post ID, never duplicate",
+    "buffer_scheduled": false,
+    "status": "CANCELLED_BY_USER: manually removed from Buffer; never recreate",
     "buffer_idea_id": "6af6d4257438174bb4e4ad74",
     "buffer_post_id": "6af6de6cfe8cb9dc190a4a45",
     "buffer_due_at": "2026-11-13T12:06:00Z",
-    "last_verified_state": "BLOCKED: recorded post now returns 404; list_posts empty",
-    "new_duration_policy_applies": false
+    "last_verified_state": "User confirmed manual removal",
+    "new_duration_policy_applies": false,
+    "exclude_from_reconciliation": true
   },
   "repository": {
     "full_name": "Anurag99singh/heygen-youtube-shorts-automation",
@@ -104,12 +107,13 @@
     "skill_url": "https://github.com/Anurag99singh/heygen-youtube-shorts-automation/blob/main/SKILL.md"
   },
   "daily_production": {
-    "start_local_time": "09:00",
+    "start_local_time": "10:00",
     "timezone": "Asia/Kolkata",
     "one_row_per_production_date": true,
     "research_race_policy": "verify fresh candidate from existing Sources if today's briefing is not ready",
     "scheduled_older_rows_block_new_day": false,
-    "missed_publish_slot": "BLOCKED; request next date, no immediate publish or silent rollover"
+    "missed_publish_slot": "BLOCKED; request next date, no immediate publish or silent rollover",
+    "unattended": true
   },
   "render_monitor": {
     "session_column": "N",
@@ -138,8 +142,9 @@
       2,
       3
     ],
-    "approve_with_script": true,
+    "approve_with_script": false,
     "include_original_source": true,
-    "not_on_video_subtitles": true
+    "not_on_video_subtitles": true,
+    "description_is": "YouTube description below video, never part of spoken script"
   }
 }
