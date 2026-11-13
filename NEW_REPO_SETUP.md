@@ -11,3 +11,6 @@ On 13 November 2026:
 - Scheduled approved VID-001 with the Buffer plugin, post `6af6de6cfe8cb9dc190a4a45`, due 13 November 2026 at 17:36 IST.
 
 Use [SKILL.md](SKILL.md) and [Buffer publishing](references/buffer-publishing.md) for current operation. Never request Buffer browser sign-in for scheduling. Preserve all workflow IDs, approvals and the future fixed voice. Do not commit credentials or signed media URLs. Read live Google Sheet and service records before relying on this dated setup record.
+
+## Current policy update
+New videos: 30–35 seconds inclusive, production prep 09:00 IST, target next-day 09:00, Buffer automatic/customScheduled. Dedicated title/caption and timing/monitoring references added. VID-001's historical schedule is currently unverified (recorded post returns 404); keep duplicate guard and investigate, never auto-recreate.

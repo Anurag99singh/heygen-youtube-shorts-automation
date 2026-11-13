@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "workflow_name": "AI Software Shorts — HeyGen Video Agent to Buffer YouTube",
   "timezone": "Asia/Kolkata",
   "status_source": "Google Sheet live; never trust cached GitHub statuses",
@@ -30,10 +30,10 @@
   "shorts": {
     "platform": "YouTube",
     "aspect_ratio": "9:16",
-    "maximum_seconds": 30,
+    "maximum_seconds": 35,
     "target_seconds_range": [
-      27,
-      29
+      32,
+      34
     ],
     "scenes": 4,
     "persistent_title": true,
@@ -41,19 +41,27 @@
     "watermark": false,
     "music": "subtle",
     "script_approval_required": true,
-    "one_script_doc_per_video": true
+    "one_script_doc_per_video": true,
+    "minimum_seconds": 30,
+    "spoken_words_guidance": [
+      65,
+      80
+    ]
   },
   "buffer": {
     "organization_id": "6ae9a6a24fd7379ad1914b12",
     "youtube_channel_id": "6af6b7bf62b70b94b016cbe8",
     "scheduling_type": "automatic",
-    "default_mode": "addToQueue",
+    "default_mode": "customScheduled",
     "youtube_category_id": "28",
     "media_asset_requirement": "fresh direct HTTPS MP4 accepted by Buffer; signed source expiry must cover actual queue slot plus 24h",
     "accepts_expiring_signed_url": true,
     "signed_url_policy": "temporary only; fetch fresh, verify expiry and saved post/media; never store signed URLs in GitHub",
     "scheduling_route": "Buffer plugin only",
-    "browser_scheduling_allowed": false
+    "browser_scheduling_allowed": false,
+    "publish_local_time": "09:00",
+    "publish_day_offset": 1,
+    "due_at_source": "Video Queue X: production date W + 1 day at 09:00 Asia/Kolkata"
   },
   "automations": {
     "existing_ai_trends": {
@@ -63,12 +71,12 @@
     },
     "daily_script_prep": {
       "id": "6af6d39cf50c8191a087adb5bd1376d4",
-      "cadence": "daily approximately 10:00 IST",
+      "cadence": "daily 09:00 IST exact schedule",
       "enabled": true
     },
     "heygen_buffer_handoff": {
       "id": "6af6c74482fc8191bd1608e67cdea0ee",
-      "cadence": "hourly",
+      "cadence": "hourly status polling and approved next-day 09:00 scheduling",
       "enabled": true,
       "buffer_plugin_scheduling_verified_on": "2026-11-13"
     }
@@ -81,16 +89,57 @@
     "video_page": "https://app.heygen.com/videos/321845ae839b45adb611145293a24e8b",
     "duration_seconds": 23.1967,
     "voice_exception_accepted_only_for_this_video": true,
-    "buffer_scheduled": true,
-    "status": "SCHEDULED via Buffer plugin; publication not yet confirmed",
+    "buffer_scheduled": null,
+    "status": "BLOCKED: scheduling/publication currently unverified; retain recorded post ID, never duplicate",
     "buffer_idea_id": "6af6d4257438174bb4e4ad74",
     "buffer_post_id": "6af6de6cfe8cb9dc190a4a45",
-    "buffer_due_at": "2026-11-13T12:06:00Z"
+    "buffer_due_at": "2026-11-13T12:06:00Z",
+    "last_verified_state": "BLOCKED: recorded post now returns 404; list_posts empty",
+    "new_duration_policy_applies": false
   },
   "repository": {
     "full_name": "Anurag99singh/heygen-youtube-shorts-automation",
     "visibility": "private",
     "default_branch": "main",
     "skill_url": "https://github.com/Anurag99singh/heygen-youtube-shorts-automation/blob/main/SKILL.md"
+  },
+  "daily_production": {
+    "start_local_time": "09:00",
+    "timezone": "Asia/Kolkata",
+    "one_row_per_production_date": true,
+    "research_race_policy": "verify fresh candidate from existing Sources if today's briefing is not ready",
+    "scheduled_older_rows_block_new_day": false,
+    "missed_publish_slot": "BLOCKED; request next date, no immediate publish or silent rollover"
+  },
+  "render_monitor": {
+    "session_column": "N",
+    "start_column": "Y",
+    "duration_column": "Z",
+    "video_id_checkpoint": "cell note on J until permanent URL",
+    "cadence": "hourly",
+    "foreground_minimum_poll_seconds": 30,
+    "foreground_window_minutes": 20,
+    "instant_completion_webhook": false,
+    "completion_detection_sla": "not guaranteed; next hourly run plus delivery delay",
+    "never_regenerate_to_poll": true
+  },
+  "youtube_copy": {
+    "title_column": "U",
+    "description_column": "V",
+    "title_target_characters": [
+      40,
+      65
+    ],
+    "description_target_words": [
+      45,
+      80
+    ],
+    "hashtags_count": [
+      2,
+      3
+    ],
+    "approve_with_script": true,
+    "include_original_source": true,
+    "not_on_video_subtitles": true
   }
 }

@@ -33,6 +33,18 @@
 | S | Published Timestamp | Verified time after successful posting |
 | T | Publishing Error | Failure cause or factual QA observations, user-readable |
 
+## Added posting and timing fields
+| Col | Key | Meaning |
+| --- | --- | --- |
+| U | YouTube Title | Approved publishing title; separate from script Doc |
+| V | YouTube Caption | Approved description, source and 2–3 hashtags |
+| W | Production Date | India date YYYY-MM-DD; daily idempotency key |
+| X | Target Publish At | Production date + 1 at 09:00 Asia/Kolkata, timezone explicit |
+| Y | Render Started At | Real submission timestamp, not estimated completion |
+| Z | Duration Seconds | Measured actual runtime; new videos pass only 30.0–35.0 inclusive |
+
+U/V are reviewed with E. Store actual video ID as a J cell note until permanent view URL is available. W/X are assigned once, not recalculated on each hourly retry. Keep all earlier columns, validations and records intact. A missing Buffer post retains M as duplicate guard and L=BLOCKED.
+
 The Sheet **can have dropdown validations** for E, G, I, L. Inspect live cell metadata before updating.
 
 ## Status transitions

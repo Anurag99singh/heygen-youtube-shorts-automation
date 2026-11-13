@@ -1,3 +1,5 @@
+> Historical pilot record. Current policy is 30–35 seconds for NEW videos, production starts 09:00 IST and exact next-day 09:00 publication. Latest 13 November live check: recorded VID-001 Buffer ID returns 404; list_posts empty. Current state is BLOCKED, M retained, no duplicate. Historical scheduling success below does not establish current queue state.
+
 # VID-001 — pilot findings and recovery
 
 Date: 2026-11-13, Asia/Kolkata.

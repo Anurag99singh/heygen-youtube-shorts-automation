@@ -1,6 +1,6 @@
 ---
 name: heygen-youtube-shorts
-description: Create, review, render, validate and schedule <=30-second AI-software news YouTube Shorts through Google Docs, a single Google Sheet, HeyGen Video Agent and Buffer. Strict voice, script, title, plan-approval, idempotency and media-transfer rules.
+description: Create, review, render, validate and schedule 30–35-second AI-software news YouTube Shorts through Google Docs, a single Google Sheet, HeyGen Video Agent and Buffer. Strict voice, script, title, plan-approval, idempotency and media-transfer rules.
 ---
 
 # HeyGen → YouTube Shorts Automation
@@ -18,7 +18,7 @@ Use this skill when the user asks to prepare, revise, review, generate, monitor,
 
 ## Production invariants
 1. User wants **YouTube Shorts only**, via **Buffer**, and no additional paid orchestration service.
-2. **HARD runtime limit: 30.0 seconds**, including any intro, transitions and ending. Aim for 27–29 seconds; reject longer output.
+2. **HARD runtime range: 30.0–35.0 seconds inclusive**, including intro, transitions and ending. Aim for 32–34 seconds. Reject measured output below 30 or above 35; do not round it into range. Applies to new videos; preserve VID-001's previously approved pilot history.
 3. **Four-scene simple prompt**: Hook (avatar); Feature/Announcement (B-roll); Why it matters (B-roll); CTA (avatar). Each scene has **VISUAL**, **NARRATION** (exact spoken lines), **DELIVERY DIRECTION**. Use short plain English matching the IBM/Microsoft prompt's clarity, not a technical document.
 4. Topic-specific **title persists from first to last frame**, across *all scenes and transitions*. One line, ~44 pt, just below top edge, no face overlap.
 5. 9:16 portrait; realistic, specifically relevant B-roll; natural gestures; subtle music; **no generated subtitles, captions or watermark**.
@@ -30,18 +30,21 @@ Use this skill when the user asks to prepare, revise, review, generate, monitor,
 11. **Never claim a publication/schedule until Buffer confirms an actual post ID and status**. Never create duplicate videos/posts as retries.
 
 ## Runbook
-1. **Read live queue**. Choose one relevant `READY` row; skip rows with an active HeyGen session, a finished video, a Buffer Post ID, or a pending approval. Read Settings and avatar mapping.
-2. **Research/source** topic, draft a simple <=30s four-scene HeyGen prompt in the row's existing Google Doc (create one document ONLY for a brand-new row); write document link to D and set status `SCRIPT REVIEW`. Wait for E `APPROVE`; on `REVISE`, edit the same Doc using F feedback and reset E to `PENDING`.
+1. **Read live queue**. Use one row per India production date. Resume existing rows idempotently. Do not start another render for an active/completed job. A previously scheduled or separately blocked older row does not block the next day's topic draft. Read Settings and avatar mapping.
+2. **Research/source** topic, draft a simple 30–35s four-scene HeyGen prompt and posting title/caption in U/V in the row's existing Google Doc (create one document ONLY for a brand-new row); write document link to D and set status `SCRIPT REVIEW`. Wait for E `APPROVE`; on `REVISE`, edit the same Doc using F feedback and reset E to `PENDING`.
 3. **Before HeyGen**, confirm selected look, fixed voice, and plan mode. For first 10 tests use HeyGen **Plan / Chat mode** in an attended Work browser. The connected `video_agent_generate` action starts generation and does NOT expose a reliable Plan Mode/pause toggle. Do not use it for an unapproved plan-stage handoff. **Stopping the session is not a plan pause**; prior test demonstrated it loses the blueprint.
 4. Once the actual HeyGen plan is visible, store session URL in H; set status `PLAN REVIEW`; wait for I `APPROVE`; on `REVISE`, improve plan **in the same HeyGen session**. For an explicit user override to go straight to rendering, record that per-row, submit **only the approved Doc body**, not a preamble, with selected `avatarId`.
-5. During render, store HeyGen session ID in N and `RENDERING` in L. Monitor the existing job; never resubmit the prompt merely to check status.
-6. As soon as HeyGen completes, **store permanent HeyGen viewing page in J** (e.g. `https://app.heygen.com/videos/VIDEO_ID`), runtime and evaluation in T, set L `VIDEO READY` or `BLOCKED`. Check actual length, all scene narration text, voice IDs, avatar IDs, captions, and visible persistent title when possible. If a check cannot be verified, state that explicitly.
-7. **Buffer handoff — plugin only.** Use the connected Buffer plugin, never a Buffer browser session. After publication approval and QA, fetch a fresh direct MP4 from HeyGen `get_video` and use `assets: [{video: {url: freshVideoUrl}}]` in Buffer `create_post`, Automatic / Add to Queue. A signed HeyGen URL is temporary, but was successfully accepted by Buffer for VID-001 on 13 November 2026. Validate its expiry against the actual queue slot plus a safety margin; do not call it permanent, store it in GitHub, or leave it in Sheet Q as durable media. Read `references/buffer-publishing.md` for expiry and post-verification rules. A video page/private Drive preview is invalid media. Verify the returned post through `get_post`; missing media or an error is BLOCKED, never scheduling success.
-8. Verify Buffer account/channel, check duplicate post by M and Buffer list_posts, then use automatic scheduling, addToQueue (unless user specifies another slot), YouTube `categoryId: "28"`, title + short source-backed description; mark `isAiGenerated` appropriately. Record Buffer post ID in M and `SCHEDULED` in L. Only fill K with **actual YouTube URL after sent** and reconcile status `PUBLISHED`.
-9. Final user update: exact step performed, links, checked/unchecked quality gates and any blocker. **No claims of background progress** unless an Automation was actually created and verified.
+5. During render, store HeyGen session ID in N, render start timestamp in Y, actual video ID in a J cell note, and `RENDERING` in L. Monitor the existing job; never resubmit the prompt merely to check status.
+6. As soon as HeyGen completes, **store permanent HeyGen viewing page in J** (e.g. `https://app.heygen.com/videos/VIDEO_ID`), measured runtime in Z and evaluation in T, set L `VIDEO READY` or `BLOCKED`. Check actual length, all scene narration text, voice IDs, avatar IDs, captions, and visible persistent title when possible. If a check cannot be verified, state that explicitly.
+7. **Buffer handoff — plugin only.** Use the connected Buffer plugin, never a Buffer browser session. After publication approval and QA, fetch a fresh direct MP4 from HeyGen `get_video` and use `assets: [{video: {url: freshVideoUrl}}]` in Buffer `create_post`, Automatic / customScheduled for X. A signed HeyGen URL is temporary, but was successfully accepted by Buffer for VID-001 on 13 November 2026. Validate its expiry against the actual target X plus at least 24 hours; do not call it permanent, store it in GitHub, or leave it in Sheet Q as durable media. Read `references/buffer-publishing.md` for expiry and post-verification rules. A video page/private Drive preview is invalid media. Verify the returned post through `get_post`; missing media or an error is BLOCKED, never scheduling success.
+8. Verify Buffer account/channel, check duplicate post by M and Buffer list_posts, then use `schedulingType: "automatic"`, `mode: "customScheduled"` and `dueAt` equal to production date W + one day at **09:00 IST** (persisted in X), YouTube `categoryId: "28"`, approved U title + V source-backed caption; mark `isAiGenerated` appropriately. Record Buffer post ID in M and `SCHEDULED` in L. Only fill K with **actual YouTube URL after sent** and reconcile status `PUBLISHED`.
+9. Read [daily timing](references/daily-timing.md) for the 09:00 production start, exact next-day slot, research race, persistent 10+ minute render monitoring and missed-slot handling. Read [YouTube captions](references/youtube-caption.md) before drafting U/V. The daily and hourly tasks must never require a Buffer browser login.
+10. Final user update: exact step performed, links, checked/unchecked quality gates and any blocker. **No claims of background progress** unless an Automation was actually created and verified.
 
 ## Additional references (read relevant file)
 - [Prompt template](references/script-template.md)
+- [YouTube title/caption standard](references/youtube-caption.md)
+- [Daily dates and render monitoring](references/daily-timing.md)
 - [Sheet schema and state machine](references/sheet-schema.md)
 - [HeyGen voice, approval and QA](references/heygen-controls.md)
 - [Buffer upload and scheduling](references/buffer-publishing.md)
@@ -49,4 +52,4 @@ Use this skill when the user asks to prepare, revise, review, generate, monitor,
 - [Test 1 incident and accepted exception](references/test-1-incident.md)
 
 ## Source of truth precedence
-Live Google Sheet + connector status > connected HeyGen/Buffer records > user instruction in current chat > repository references. The repository explains **how** to work; it is never the sole evidence that a video has rendered or a post was scheduled. Preserve credentials outside GitHub.
+The current user's instructions set policy; live Google Sheet and connected service records determine actual state; repository notes are dated operational guidance. The repository explains **how** to work; it is never the sole evidence that a video has rendered or a post was scheduled. Preserve credentials outside GitHub.

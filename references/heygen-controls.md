@@ -20,12 +20,12 @@
 ## Direct render: only when authorized
 - User may override mandatory plan review **for one specified video**. If yes, call `video_agent_generate` with **prompt equal to exactly the Google Doc body**, `avatarId` equal to the selected look ID; do not add `conversationContext` boilerplate or another wrapper.
 - The tool does not expose a reliable `voiceId` input. Verify group default before rendering and **actual scene voice IDs after**. A request in Doc for consistent voice alone is insufficient to force voice choice.
-- Save `sessionId` and returned `video_id`. Never duplicate the generation to poll.
+- Save `sessionId` in N and returned `video_id` in a J cell note; persist render start time Y before ending the run. Never duplicate the generation to poll.
 - Poll `get_video_agent_session` / `get_video` at reasonable intervals. If pending, record pending; **do not claim a final video exists**.
 - On completion, write **permanent HeyGen viewing page** into Video Queue J immediately, even if Buffer cannot upload yet.
 
 ## QA checklist
-- [ ] Actual duration is **≤30.0 sec** and 9:16.
+- [ ] Actual duration is **30.0–35.0 sec inclusive (target 32–34)** and 9:16.
 - [ ] Four scene scripts match approved narration **exactly**, not paraphrased; no added spoken lines.
 - [ ] Every scene voice ID equals `d35557f1a8e24de1a34345cf58a30e51`, unless a documented single-video exception.
 - [ ] Presenter scene avatar ID equals the selected look ID.
@@ -36,3 +36,6 @@
 
 ## Prior failure
 - VID-001 exact scene narration and avatar were correct and duration **23.1967s**, but all scene voice IDs were the old group default. The user **explicitly accepted that video's voice only**. See [test-1-incident.md](test-1-incident.md).
+
+## Persistent rendering
+Follow [daily-timing.md](daily-timing.md). Renders may take 10 minutes or more. Hourly checks resume the same session/video across runs, update J/Z immediately upon completion, and schedule the approved output for X through Buffer. Do not equate elapsed time with completion. Missing or failed jobs require honest status, not duplicate generation. Existing VID-001's short 23.2s duration is historical and must not be copied as the new target.
