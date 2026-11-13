@@ -48,3 +48,6 @@ These tasks **have now been created/enabled** in ChatGPT Automations. Always rec
 The two new tasks run via the current conversation's inherited environment. **Work/browser upload ability remains unverified in those environments**; do not claim automatic Buffer attachment or actual scheduling until a Buffer post ID exists. If the hourly worker cannot upload local MP4, it must leave precise blocker details and require the Work browser/file-upload route. The schedule alone cannot substitute for a stable direct media asset or cloud browser credentials.
 
 The user approved the wrong voice **only for VID-001**. Its Buffer handoff is pending; no second HeyGen generation should be started for that video. Future videos require the corrected Anshul -- 17 voice.
+
+## Dedicated repository handoff — 13 November 2026
+The canonical HeyGen skill now lives at https://github.com/Anurag99singh/heygen-youtube-shorts-automation/blob/main/SKILL.md . The separate AI Trend Briefing remains in v3. Cloud browser access and approved MP4 download worked in the attended migration session; Buffer browser authentication was not completed, so local upload and scheduled publication remain unverified. Do not infer that the recurring tasks have an authenticated browser session from this attended check.

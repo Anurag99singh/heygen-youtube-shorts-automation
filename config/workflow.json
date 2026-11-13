@@ -79,7 +79,7 @@
     "duration_seconds": 23.1967,
     "voice_exception_accepted_only_for_this_video": true,
     "buffer_scheduled": false,
-    "status": "VIDEO READY; Buffer Idea created, MP4 upload to Buffer UI not yet performed",
+    "status": "BLOCKED: approved MP4 downloaded in cloud browser; Buffer cloud-browser sign-in not completed. No scheduled post.",
     "buffer_idea_id": "6af6d4257438174bb4e4ad74"
   },
   "repository": {

@@ -34,3 +34,8 @@ VID-001 finished **23.1967 s**; permanent HeyGen viewing URL is saved in Sheet J
 
 ## Buffer prepared draft for VID-001
 An unscheduled Buffer Idea exists with id `6af6d4257438174bb4e4ad74`. Use its prepared title/caption when attaching the downloaded MP4 via browser. It is NOT yet a scheduled YouTube post. First check Buffer channel for an existing post before creating another.
+
+## Latest verified cloud setup — 13 November 2026
+- Canonical private repository migration completed; all 12 files verified on `main`.
+- Cloud browser opened the approved video and downloaded its actual MP4. Buffer's cloud-browser session was signed out; secure sign-in was not completed. No upload or scheduled post was created.
+- Check live Sheet and Buffer again on resume. Complete Buffer browser sign-in, then upload the approved MP4, use the existing Idea caption and Automatic / Add to Queue. Do not generate another video.
