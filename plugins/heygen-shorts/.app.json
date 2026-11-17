@@ -1,0 +1,10 @@
+{
+  "apps": {
+    "google-drive": {
+      "id": "connector_5f3c8c41a1e54ad7a76272c89e2554fa"
+    },
+    "heygen": {
+      "id": "asdk_app_69418aad55e08191aa5e437b649ca2e4"
+    }
+  }
+}

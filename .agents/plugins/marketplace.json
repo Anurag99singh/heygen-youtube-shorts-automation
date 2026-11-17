@@ -1,0 +1,20 @@
+{
+  "name": "anurag-shorts",
+  "interface": {
+    "displayName": "Anurag Shorts"
+  },
+  "plugins": [
+    {
+      "name": "heygen-shorts",
+      "source": {
+        "source": "local",
+        "path": "./plugins/heygen-shorts"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Creativity"
+    }
+  ]
+}

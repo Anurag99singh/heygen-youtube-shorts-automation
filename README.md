@@ -12,3 +12,7 @@ In Video Queue use E for script APPROVE/REVISE, I for video APPROVE/REVISE, F fo
 The [fixed template](skills/script-writer/template.md) and [contract renderer](scripts/script_contract.py) support the writer. All workflow instructions and column mapping are in SKILL.md. No other topic spreadsheet or supporting workflow documents are required.
 
 Always generate through Video Agent with the complete production prompt. Burned-in subtitles are mandatory; YouTube description V is separate.
+
+## Installable plugin
+
+A portable skills plugin is now available under `plugins/heygen-shorts/`, registered by `.agents/plugins/marketplace.json`. See [INSTALL_PLUGIN.md](INSTALL_PLUGIN.md). This is a Codex-compatible private plugin package; receiving-account Work UI import and scheduler access must still be verified.

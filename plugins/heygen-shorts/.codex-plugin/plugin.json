@@ -1,0 +1,29 @@
+{
+  "name": "heygen-shorts",
+  "version": "1.0.0",
+  "description": "Set up and run an approval-based HeyGen Video Agent to Buffer YouTube Shorts pipeline with a fixed Anshul -- 17 voice.",
+  "author": {
+    "name": "Anurag Singh"
+  },
+  "skills": "./skills/",
+  "apps": "./.app.json",
+  "interface": {
+    "displayName": "HeyGen Shorts",
+    "shortDescription": "Topics to approved, captioned YouTube Shorts",
+    "longDescription": "Guided setup creates a new Google Sheet, discovers avatar looks, verifies Anshul -- 17 and Buffer destination, and configures three approval-based schedulers. Generates through Video Agent only with B-roll, persistent titles and subtitles. Requires your own connected Google Drive, HeyGen and Buffer accounts.",
+    "developerName": "Anurag Singh",
+    "category": "Creativity",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "brandColor": "#157A76",
+    "composerIcon": "./assets/icon.svg",
+    "defaultPrompt": [
+      "Set up my Shorts workflow",
+      "Check my Shorts workflow status",
+      "Process my Shorts approvals"
+    ]
+  }
+}
