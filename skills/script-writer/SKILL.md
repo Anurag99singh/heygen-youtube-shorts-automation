@@ -22,7 +22,7 @@ Inputs: verified topic and dated original sources, audience consequence, demonst
 ## Fixed text and allowed substitutions
 Fill only {{...}} slots in template.md. Preserve every other character, including opening metadata labels, FORMAT, TONE, scene labels/timing/emotion cues and all OVERALL VIDEO DIRECTIONS. The duration has deliberately been adapted from the 40-second example to the user's confirmed 30–35-second requirement.
 
-Allowed dynamic fields: TOPIC; VIDEO_TITLE; SCENE_3_HEADING; each scene's VISUAL, NARRATION, DELIVERY; CALLOUTS (three short quoted phrases separated by commas/and); BROLL_SUBJECTS (topic-specific realistic footage); DEMONSTRATION_PROCESS (the process to show). Keep title short enough for one line at 44, consistent across scenes. No other boilerplate rewrites. The footer's subtitle and watermark instructions remain verbatim; this workflow does not add a subtitle-production stage.
+Allowed dynamic fields: TOPIC; VIDEO_TITLE; SCENE_3_HEADING; each scene's VISUAL, NARRATION, DELIVERY; CALLOUTS (three short quoted phrases separated by commas/and); BROLL_SUBJECTS (topic-specific realistic footage); DEMONSTRATION_PROCESS (the process to show). Keep title short enough for one line at 44, consistent across scenes. No other boilerplate rewrites. The footer requires native Video Agent subtitles throughout, including B-roll, as explicitly updated by the user. YouTube description V remains separate. Never revert to the earlier no-subtitles instruction.
 
 ## Required checks before handoff
 - Every narration claim has source support; visuals do not imply extra capabilities.

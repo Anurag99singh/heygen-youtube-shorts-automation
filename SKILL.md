@@ -5,6 +5,11 @@ description: Three-worker YouTube Shorts workflow with manual script and video a
 
 # YouTube Shorts workflow
 
+## Required HeyGen route and subtitles
+Always use **HeyGen Video Agent** for this pipeline. Send the full production Doc including scene visuals, B-roll, persistent title, callouts, narration and editing directions. Never use Avatar Video, presenter-only rendering, or narration-only payloads as a substitute. Video Agent may vary wording/voice: request fidelity and inspect actual output; report deviations for human review rather than silently switching routes.
+
+**Burned-in, speech-synchronized subtitles are required** throughout avatar and B-roll scenes. They are distinct from the YouTube description in V. Before video review, verify visible subtitles in the exported video. For an existing correct render missing subtitles, continue the same Video Agent session with a subtitle-only edit; preserve footage, audio, title, timing and all scene assets. Keep previous output IDs in checkpoint history and require human review of the updated export. Never schedule the uncaptioned source.
+
 ## One workbook only
 https://docs.google.com/spreadsheets/d/1uWtWc04CIZwGD5EqaE1YBOdkE8UIVU4O8SmZisERlI8/edit
 
@@ -42,7 +47,7 @@ Set E=PENDING, I=PENDING, L=SCRIPT REVIEW, W=production date; save current scrip
 ### 2. HeyGen completion — hourly
 Read only existing RENDERING rows with persisted session/video IDs. Query the SAME session until video ID exists, then get that video. Pending, even after 10+ minutes, is not failure. Never generate or stop a render to poll. Persist actual progress, no tight polling or instant-webhook promises.
 
-On completion save J permanent viewing page, Z measured seconds and real video ID in O. Check exact narration, every scene voice ID, avatar IDs, 9:16, persistent title throughout transitions, relevant distinct B-roll, no generated subtitles or watermark. Final runtime must be 30.0–35.0 inclusive, no rounding. Missing proof/failure -> BLOCKED/T, preserve output; no automatic paid regeneration.
+On completion save J permanent viewing page, Z measured seconds and real video ID in O. Check exact narration, every scene voice ID, avatar IDs, 9:16, persistent title throughout transitions, relevant distinct B-roll, speech-synchronized burned-in subtitles and no watermark. Final runtime must be 30.0–35.0 inclusive, no rounding. Missing proof/failure -> BLOCKED/T, preserve output; no automatic paid regeneration.
 
 Passing output -> I=PENDING, L=VIDEO REVIEW; save review binding in O of video ID, J, approved script hash, G, U, V and duration; notify with J for HUMAN review. This worker never sets APPROVE, never rewrites the script and never schedules Buffer.
 

@@ -124,6 +124,6 @@ Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 **IMPORTANT:**
 
 - Use the supplied narration exactly as written. Do not rewrite, shorten or add spoken lines.
-- Do not generate subtitles or captions; they will be added separately.
+- Generate accurate, speech-synchronized subtitles throughout the entire video, including B-roll. Use compact, high-contrast, mobile-readable text in one or two lines inside the middle safe area. Keep subtitles clear of the persistent title, avatar face and important visuals.
 - Do not add any watermark, including a HeyGen watermark.
 - Maintain a clean, polished and professional AI-news reel aesthetic.
