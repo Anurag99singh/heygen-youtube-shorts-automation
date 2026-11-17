@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.2",
+  "schema_version": "2.0",
   "workflow_name": "AI Software Shorts — HeyGen Video Agent to Buffer YouTube",
   "timezone": "Asia/Kolkata",
   "status_source": "Google Sheet live; never trust cached GitHub statuses",
@@ -14,18 +14,12 @@
         "Grok Style Reference"
       ]
     },
-    "style_reference_google_doc": "https://docs.google.com/document/d/1aXsLa5MABozi7aBf4vbSmnplPdPyd6mNyRcb-JCkd0w/edit",
     "existing_trend_skill": "https://github.com/Anurag99singh/consistent-explainer-videos-v3/blob/main/skills/ai-trend-briefing/SKILL.md"
   },
   "heygen": {
     "avatar_group_id": "34dc0457ca4d4eeb92dae5a9e5180bd8",
     "default_voice": "Anshul -- 17",
-    "default_voice_id": "d35557f1a8e24de1a34345cf58a30e51",
-    "default_voice_verified_on": "2026-11-13",
-    "plan_review_first_videos": 0,
-    "render_connector_is_plan_safe": false,
-    "plan_mode_route": "Unattended HeyGen Video Agent generation; no manual plan gate",
-    "known_wrong_voice_id": "7b9850bf42ed4d999891709c3f7341a9"
+    "default_voice_id": "d35557f1a8e24de1a34345cf58a30e51"
   },
   "shorts": {
     "platform": "YouTube",
@@ -73,31 +67,20 @@
     },
     "daily_script_prep": {
       "id": "6af6d39cf50c8191a087adb5bd1376d4",
-      "cadence": "daily 10:00 IST exact schedule; topic through render submission",
-      "enabled": true
+      "cadence": "daily 10:00 IST exact schedule; topic through render submission"
     },
     "heygen_buffer_handoff": {
       "id": "6af6c74482fc8191bd1608e67cdea0ee",
       "cadence": "hourly status polling and approved next-day 09:00 scheduling",
-      "enabled": true,
       "buffer_plugin_scheduling_verified_on": "2026-11-13"
-    }
+    },
+    "state_source": "Check live Automations; production and handoff were paused on 2026-11-17; do not auto-enable"
   },
   "pilot": {
     "id": "VID-001",
-    "script_doc": "https://docs.google.com/document/d/1rcD_N0vOmVrCb0c7zzn6_xx_sojnz8aUcxhfAkfAMTc/edit",
-    "heygen_session_id": "6a996f7aa76d448d8b971bdb51057006",
     "video_id": "321845ae839b45adb611145293a24e8b",
-    "video_page": "https://app.heygen.com/videos/321845ae839b45adb611145293a24e8b",
-    "duration_seconds": 23.1967,
-    "voice_exception_accepted_only_for_this_video": true,
-    "buffer_scheduled": false,
     "status": "CANCELLED_BY_USER: manually removed from Buffer; never recreate",
-    "buffer_idea_id": "6af6d4257438174bb4e4ad74",
     "buffer_post_id": "6af6de6cfe8cb9dc190a4a45",
-    "buffer_due_at": "2026-11-13T12:06:00Z",
-    "last_verified_state": "User confirmed manual removal",
-    "new_duration_policy_applies": false,
     "exclude_from_reconciliation": true
   },
   "repository": {
@@ -146,5 +129,12 @@
     "include_original_source": true,
     "not_on_video_subtitles": true,
     "description_is": "YouTube description below video, never part of spoken script"
+  },
+  "script_writer": {
+    "skill": "skills/script-writer/SKILL.md",
+    "template": "skills/script-writer/template.md",
+    "renderer": "scripts/script_contract.py",
+    "fixed_text_policy": "Only named template slots may change; all other text remains unchanged",
+    "style_reference": "User-provided successful script, 2026-11-17; 30–35s explicitly retained"
   }
 }
