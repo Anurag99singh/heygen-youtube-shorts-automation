@@ -53,7 +53,7 @@ Set E=PENDING, I=PENDING, AD=PENDING, L=SCRIPT REVIEW, W=production date; save c
 ### 2. HeyGen completion — hourly
 Read only existing RENDERING rows with persisted session/video IDs. Query the SAME session until video ID exists, then get that video. Pending, even after 10+ minutes, is not failure. Never generate or stop a render to poll. Persist actual progress, no tight polling or instant-webhook promises.
 
-On completion save J permanent viewing page, Z measured seconds and real video ID in O. Check exact narration, every scene voice ID, avatar IDs, 9:16, persistent title throughout transitions, relevant distinct B-roll, speech-synchronized burned-in subtitles and no watermark. Final runtime must be 30.0–35.0 inclusive, no rounding. Missing proof/failure -> BLOCKED/T, preserve output; no automatic paid regeneration.
+On completion save J permanent viewing page, Z measured seconds and real video ID in O. Check exact narration, every scene voice ID, avatar IDs, 9:16, persistent title throughout transitions, relevant distinct illustrated editorial B-roll, speech-synchronized burned-in subtitles and no watermark. Final runtime must be 30.0–35.0 inclusive, no rounding. Missing proof/failure -> BLOCKED/T, preserve output; no automatic paid regeneration.
 
 Passing output -> I=PENDING, L=VIDEO REVIEW; save review binding in O of video ID, J, approved script hash, G, U, V and duration; notify with J for HUMAN review. This worker never sets APPROVE, never rewrites the script and never schedules Buffer.
 
@@ -78,3 +78,6 @@ O stores JSON: phase/claim timestamp; current script/review fingerprints; human-
 READY -> WRITING -> SCRIPT REVIEW -> RENDERING -> VIDEO REVIEW -> DISTRIBUTION REVIEW -> HANDOFF SENT. REVISE returns to SCRIPT REVIEW with fresh human approval. BLOCKED records exact recoverable failures; no automatic render retry loop. Skip all CANCELLED/HOLD rows and specifically cancelled VID-001 forever, retaining its history.
 
 No other topic workbook or research worker is required. The caption skill and shared MP4 folder are required for handoff. Do not create duplicate workers. Scheduler prompts select one role above; they must not combine drafting with generation or completion checks with publishing. Report only verified changes and actionable new blockers. Repository edits or automated checks do not prove a video rendered or published.
+
+## Visual QA
+Verify warm-paper 2D editorial B-roll (ink/blue/sage/yellow, centered vector process animations) and clean studio presenter shots showing only avatar, title banner and subtitles. Reject unrelated overlays on presenter. Permanent title stays visible across transitions. Preserve existing review gates.

@@ -86,7 +86,7 @@
 
 Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 
-- Font size: 44.
+- Use a dark-ink horizontal banner with a centered warm-white, bold serif title, approximately size 44. Keep one continuous title overlay from first to last frame, including transitions.
 - Keep it on one line where possible.
 - Position it slightly below the top edge with comfortable spacing.
 - Maintain consistent placement, size and style throughout.
@@ -94,7 +94,7 @@ Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 
 **TEXT CARDS AND CALLOUTS:**
 
-- Place all text cards, callouts and overlays in the middle area of the screen.
+- B-roll scenes only: place diagrams, icons, labels and callouts in the middle safe area. Never add these elements over the avatar.
 - Nothing should appear at the topmost or bottommost edges.
 - Use compact, mobile-readable typography with high contrast.
 - Keep backgrounds subtle and animations minimal.
@@ -103,13 +103,19 @@ Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 
 **AVATAR:**
 
-- Maintain consistent avatar identity, clothing, voice, lighting and framing.
+- Show only the selected avatar, permanent title banner and synchronized subtitles whenever the avatar is visible. No icons, diagrams, illustrations, extra labels, objects or infographic overlays.
+- Use a clean modern studio with soft professional lighting; maintain consistent avatar identity, clothing, voice, lighting and framing.
 - Use natural facial expressions, realistic blinking and subtle, anatomically correct hand gestures.
 - Avoid exaggerated expressions or unnecessary movements.
 
 **B-ROLL:**
 
-- Use realistic {{BROLL_SUBJECTS}}.
+- Use premium 2D editorial motion graphics illustrating {{BROLL_SUBJECTS}}; no realistic stock footage, photorealistic cutaways or 3D imagery.
+- Use a warm off-white paper background with subtle texture; dark ink, muted blue, soft sage green and restrained warm-yellow accents throughout.
+- Use elegant readable serif headings and clean sans-serif labels and subtitles. Keep centered, balanced compositions with generous spacing.
+- Draw recognizable flat vector objects with clean outlines, soft colors and minimal detail. Keep the same object designs, palette, typography and animation behavior across scenes.
+- Explain each narrated action through meaningful object movement: smooth slides, progressive reveals, simple line drawing, flowing arrows and sequential infographic steps. Animate one important action at a time and hold completed diagrams long enough to understand.
+- Reveal text progressively in stable positions, without flashing, color-changing words or distracting bounce. Conceptual interfaces must be labeled illustrative and must not imply unsupported functionality.
 - Make each scene visually distinct, with no repeated or recycled B-roll.
 - Clearly demonstrate {{DEMONSTRATION_PROCESS}}.
 - Avoid generic robots, glowing brains, holographic heads and unrelated futuristic AI visuals.
@@ -124,6 +130,6 @@ Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 **IMPORTANT:**
 
 - Use the supplied narration exactly as written. Do not rewrite, shorten or add spoken lines.
-- Generate accurate, speech-synchronized subtitles throughout the entire video, including B-roll. Use compact, high-contrast, mobile-readable text in one or two lines inside the middle safe area. Keep subtitles clear of the persistent title, avatar face and important visuals.
+- Generate accurate, speech-synchronized subtitles throughout the entire video, including B-roll. Use compact, high-contrast, mobile-readable text in one or two lines inside the lower-middle safe area. Keep subtitles clear of the persistent title, avatar face and important visuals.
 - Do not add any watermark, including a HeyGen watermark.
 - Maintain a clean, polished and professional AI-news reel aesthetic.
