@@ -33,3 +33,6 @@ Allowed dynamic fields: TOPIC; VIDEO_TITLE; SCENE_3_HEADING; each scene's VISUAL
 - Read back the saved Doc and compare to the rendered prompt before any generation. A later revision updates the same Doc and reruns these checks. Never rewrite a script already bound to an active/completed render on a retry.
 
 For a script-only test, render and inspect the prompt, then stop before HeyGen. Production authorization is owned by the main pipeline, not this writing skill.
+
+## Distribution copy handoff
+Use caption-writer for U/V/AA/AB. Copy is separate from narration. Current pipeline ends at approved email handoff; never schedule through Buffer.

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "author": {
+    "email": "anuragsinghisgood@gmail.com",
+    "name": "Anurag Singh"
+  },
+  "description": "Approval-based Shorts production ending at a verified Gmail distribution handoff.",
+  "extensions": {
+    "com.openai": {
+      "apps": "./.app.json",
+      "interface": {
+        "brandColor": "#157A76",
+        "capabilities": [
+          "Interactive",
+          "Read",
+          "Write"
+        ],
+        "category": "Creativity",
+        "composerIcon": "./assets/icon.svg",
+        "defaultPrompt": [
+          "Set up my Shorts workflow",
+          "Check my Shorts workflow status",
+          "Process my Shorts approvals"
+        ],
+        "developerName": "Anurag Singh",
+        "displayName": "HeyGen Shorts",
+        "logo": "./assets/icon.svg",
+        "longDescription": "Prepare approved Video Agent Shorts, stable Drive MP4s and YouTube/Instagram copy, then email the configured recipient. Three workers and manual approvals. Requires Drive, HeyGen and Gmail. No producer publishing.",
+        "shortDescription": "Approved, captioned Shorts"
+      }
+    }
+  },
+  "name": "heygen-shorts",
+  "version": "1.2.0"
+}

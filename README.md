@@ -1,18 +1,5 @@
-# HeyGen YouTube Shorts
+# HeyGen Shorts — approved email handoff
 
-Read [main pipeline](SKILL.md). It uses only the [topic/review workbook](https://docs.google.com/spreadsheets/d/1uWtWc04CIZwGD5EqaE1YBOdkE8UIVU4O8SmZisERlI8/edit).
+[Pipeline](SKILL.md) → [script writer](skills/script-writer/SKILL.md) → manual script approval → Video Agent → completion QA → manual video approval → [caption writer](skills/caption-writer/SKILL.md) + stable original MP4 in Drive → manual distribution approval → email. No Buffer scheduling in the producer account. Boss owns both platform publishing.
 
-Three workers:
-1. Daily 10:00 IST: select supplied topic → [script writer](skills/script-writer/SKILL.md) → manual script review.
-2. Hourly: check existing HeyGen jobs → update Sheet → manual video review.
-3. Hourly: process approvals/revisions → approved script to HeyGen; approved video to Buffer; verify publication.
-
-In Video Queue use E for script APPROVE/REVISE, I for video APPROVE/REVISE, F for feedback. PENDING waits. No automatic approval.
-
-The [fixed template](skills/script-writer/template.md) and [contract renderer](scripts/script_contract.py) support the writer. All workflow instructions and column mapping are in SKILL.md. No other topic spreadsheet or supporting workflow documents are required.
-
-Always generate through Video Agent with the complete production prompt. Burned-in subtitles are mandatory; YouTube description V is separate.
-
-## Installable plugin
-
-A portable skills plugin is now available under `plugins/heygen-shorts/`, registered by `.agents/plugins/marketplace.json`. See [INSTALL_PLUGIN.md](INSTALL_PLUGIN.md). This is a Codex-compatible private plugin package; receiving-account Work UI import and scheduler access must still be verified.
+Exactly three workers: daily script, hourly completion, hourly approvals/revisions/email. Existing schedulers stay paused until recipient, shared MP4 folder and scheduled Gmail/Drive/HeyGen access pass checks. See [handoff setup](HANDOFF_SETUP.md). Old ZIP releases are historical and must not be used for this workflow.

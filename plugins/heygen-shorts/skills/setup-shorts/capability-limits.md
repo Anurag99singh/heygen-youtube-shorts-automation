@@ -1,0 +1,2 @@
+# Capability checks
+Verify scheduled Drive, Docs/Sheets, HeyGen and Gmail access. Verify original MP4 upload and recipient file access. Never infer scheduled capability from Plus plan or interactive tools. If unavailable keep workers paused and report exact blocker. No atomic email/Sheet transaction: uncertain sends require Sent reconciliation. No guaranteed exact Video Agent wording/voice; inspect output. No Buffer actions here.

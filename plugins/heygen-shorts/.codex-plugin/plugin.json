@@ -1,29 +1,32 @@
 {
-  "name": "heygen-shorts",
-  "version": "1.0.0",
-  "description": "Set up and run an approval-based HeyGen Video Agent to Buffer YouTube Shorts pipeline with a fixed Anshul -- 17 voice.",
-  "author": {
-    "name": "Anurag Singh"
-  },
-  "skills": "./skills/",
   "apps": "./.app.json",
   "interface": {
-    "displayName": "HeyGen Shorts",
-    "shortDescription": "Topics to approved, captioned YouTube Shorts",
-    "longDescription": "Guided setup creates a new Google Sheet, discovers avatar looks, verifies Anshul -- 17 and Buffer destination, and configures three approval-based schedulers. Generates through Video Agent only with B-roll, persistent titles and subtitles. Requires your own connected Google Drive, HeyGen and Buffer accounts.",
-    "developerName": "Anurag Singh",
-    "category": "Creativity",
+    "brandColor": "#157A76",
     "capabilities": [
       "Interactive",
       "Read",
       "Write"
     ],
-    "brandColor": "#157A76",
+    "category": "Creativity",
     "composerIcon": "./assets/icon.svg",
     "defaultPrompt": [
       "Set up my Shorts workflow",
       "Check my Shorts workflow status",
       "Process my Shorts approvals"
-    ]
-  }
+    ],
+    "developerName": "Anurag Singh",
+    "displayName": "HeyGen Shorts",
+    "logo": "./assets/icon.svg",
+    "longDescription": "Prepare approved Video Agent Shorts, stable Drive MP4s and YouTube/Instagram copy, then email the configured recipient. Three workers and manual approvals. Requires Drive, HeyGen and Gmail. No producer publishing.",
+    "shortDescription": "Approved, captioned Shorts"
+  },
+  "name": "heygen-shorts",
+  "version": "1.2.0",
+  "description": "Approval-based Shorts production ending at a verified Gmail distribution handoff.",
+  "author": {
+    "name": "Anurag Singh",
+    "email": "anuragsinghisgood@gmail.com"
+  },
+  "keywords": [],
+  "skills": "./skills"
 }
