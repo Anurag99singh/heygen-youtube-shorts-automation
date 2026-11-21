@@ -31,13 +31,13 @@ Read metadata, exact headers, bounded rows and validation before edits. Preserve
 | I | Video Review: PENDING / APPROVE / REVISE; human sets APPROVE |
 | J/K | Completed HeyGen viewing page / actual published YouTube URL |
 | L | Status (states below) |
-| M | Current Buffer post ID; primary duplicate guard |
+| M | Retired Buffer post ID; historical evidence only |
 | O | Workflow Checkpoint: persistent JSON approval bindings, claims and attempt history |
 | P/Q | Legacy history / optional stable MP4 only; never store expiring URL as durable media |
 | R/S | Retired publishing history, hidden; never write new publishing data |
 | T | QA, errors and review notes |
 | U/V | Separate YouTube title / description below video; never spoken |
-| W/X/Y/Z | Production date / approved future publication target / actual render start / measured duration |
+| W/X/Y/Z | Production date / retired publication target / actual render start / measured duration |
 
 ## Handoff schema additions
 AA Instagram Caption; AB Instagram Hashtags; AC Final MP4 Drive Link; AD Distribution Approval (PENDING/APPROVE/REVISE/HOLD); AE Email Message ID; AF Email Sent At UTC; AG Handoff Error. Keep A:Z positions and historical values; hide retired/technical columns rather than deleting audit history. K/M/P/R/S/X are retired historical fields. No default publishing target from this account.
@@ -48,7 +48,7 @@ Read ONLY eligible supplied rows in Video Queue. Pick the first READY or unstart
 
 **Before any draft/revision, read [skills/script-writer/SKILL.md](skills/script-writer/SKILL.md) and [template.md](skills/script-writer/template.md).** Fill only dynamic slots; retain fixed opening/overall directions. Use [scripts/script_contract.py](scripts/script_contract.py) to render/check when Python is available, otherwise perform the same checks explicitly. Keep 65–80 spoken words as drafting guidance and final measured runtime 30–35s, target 32–34. Verify the source, edit existing D or create one Doc only if absent, and read it back. Read [caption skill](skills/caption-writer/SKILL.md); prepare U/V/AA/AB separately for distribution review. No source footer/description/hashtags in Doc narration.
 
-Set E=PENDING, I=PENDING, L=SCRIPT REVIEW, W=production date; save current script binding in O and notify with D. Stop. This worker NEVER calls HeyGen or Buffer, never approves itself, and never reads another topic spreadsheet.
+Set E=PENDING, I=PENDING, AD=PENDING, L=SCRIPT REVIEW, W=production date; save current script binding in O and notify with D. Stop. This worker NEVER calls HeyGen or Buffer, never approves itself, and never reads another topic spreadsheet.
 
 ### 2. HeyGen completion — hourly
 Read only existing RENDERING rows with persisted session/video IDs. Query the SAME session until video ID exists, then get that video. Pending, even after 10+ minutes, is not failure. Never generate or stop a render to poll. Persist actual progress, no tight polling or instant-webhook promises.
@@ -58,9 +58,9 @@ On completion save J permanent viewing page, Z measured seconds and real video I
 Passing output -> I=PENDING, L=VIDEO REVIEW; save review binding in O of video ID, J, approved script hash, G, U, V and duration; notify with J for HUMAN review. This worker never sets APPROVE, never rewrites the script and never schedules Buffer.
 
 ### 3. Approval and revision actions — hourly
-This is the ONLY worker allowed to submit HeyGen or schedule Buffer. Re-read the current row and Doc immediately before consequential writes. Handle at most one generation action per run and keep at most one active render across this queue. Review waiting, cancelled, pending and unchanged rows quietly.
+This is the ONLY worker allowed to submit HeyGen or send the approved distribution email. Re-read the current row and Doc immediately before consequential writes. Handle at most one generation action per run and keep at most one active render across this queue. Review waiting, cancelled, pending and unchanged rows quietly.
 
-**Script approval:** eligible L=SCRIPT REVIEW and E=APPROVE. Compare current Doc text, source/topic, resolved avatar and U/V with the current script binding in O. If changed since offered for review, reset E=PENDING, update binding and request fresh review; never apply an old approval to changed text. If matched, record the human approval binding and claim before submitting. Verify live group voice is Anshul -- 17 / d35557f1a8e24de1a34345cf58a30e51; resolve exact look from live G/Library or Settings default, never guess. Submit only D body through HeyGen Video Agent plugin with exact avatarId. No extra Plan approval stage. Immediately persist H/N/Y, available video ID and L=RENDERING; clear I to PENDING for the new output. Unknown submission outcome -> reconcile existing job before retry, never blindly submit again. No Buffer action at this stage.
+**Script approval:** eligible L=SCRIPT REVIEW and E=APPROVE. Compare current Doc text, source/topic, resolved avatar and U/V with the current script binding in O. If changed since offered for review, reset E=PENDING, update binding and request fresh review; never apply an old approval to changed text. If matched, record the human approval binding and claim before submitting. Verify live group voice is Anshul -- 17 / d35557f1a8e24de1a34345cf58a30e51; resolve exact look from live G/Library with an explicit per-row G selection; blank G waits, never guess. Submit only D body through HeyGen Video Agent plugin with exact avatarId. No extra Plan approval stage. Immediately persist H/N/Y, available video ID and L=RENDERING; clear I to PENDING for the new output. Unknown submission outcome -> reconcile existing job before retry, never blindly submit again. No Buffer action at this stage.
 
 **Script revision:** L=SCRIPT REVIEW and E=REVISE with nonempty F. Deduplicate feedback against the checkpoint. Apply requested changes through the script-writing skill to the SAME D, read back, update binding, E=PENDING and L=SCRIPT REVIEW. Missing feedback -> request it once; do not spend credits.
 
@@ -77,4 +77,4 @@ O stores JSON: phase/claim timestamp; current script/review fingerprints; human-
 
 READY -> WRITING -> SCRIPT REVIEW -> RENDERING -> VIDEO REVIEW -> DISTRIBUTION REVIEW -> HANDOFF SENT. REVISE returns to SCRIPT REVIEW with fresh human approval. BLOCKED records exact recoverable failures; no automatic render retry loop. Skip all CANCELLED/HOLD rows and specifically cancelled VID-001 forever, retaining its history.
 
-No other workbook, research worker, external style document, config file or workflow reference is required. Do not create duplicate workers. Scheduler prompts select one role above; they must not combine drafting with generation or completion checks with publishing. Report only verified changes and actionable new blockers. Repository edits or automated checks do not prove a video rendered or published.
+No other topic workbook or research worker is required. The caption skill and shared MP4 folder are required for handoff. Do not create duplicate workers. Scheduler prompts select one role above; they must not combine drafting with generation or completion checks with publishing. Report only verified changes and actionable new blockers. Repository edits or automated checks do not prove a video rendered or published.
