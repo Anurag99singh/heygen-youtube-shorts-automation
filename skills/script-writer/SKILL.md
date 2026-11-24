@@ -43,3 +43,6 @@ Use the template's single warm-paper 2D editorial theme for every B-roll: dark i
 Whenever an avatar is on screen, show only the avatar in the consistent studio, permanent title banner and synchronized subtitles. Keep every icon, prop, diagram, label and illustration exclusively in separate B-roll shots. Scene 4 cuts from B-roll back to the clean presenter; never composite them together. The title banner remains visible across the whole video and every transition.
 
 Before saving, check all scene VISUAL fields against these rules; the footer cannot repair a contradictory scene description. Keep the existing four scenes, narration/source standards, 30–35-second target, voice, manual approvals and email handoff. The Gemini Tasks sample supplies visual direction only, not claims, a new topic, a five-scene requirement or an exact-35-second mandate.
+
+## Subtitle placement
+Use the fixed template central caption zone: entire text block at 50–65% frame height, centered in the central70% width, bottom35% reserved for platform overlays. Frame the avatar and B-roll around it; keep title and face unobstructed. No lower-third/bottom subtitles. Check actual exported placement; prompt compliance alone is not proof.

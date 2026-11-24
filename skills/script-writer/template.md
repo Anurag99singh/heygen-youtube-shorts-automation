@@ -130,6 +130,6 @@ Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 **IMPORTANT:**
 
 - Use the supplied narration exactly as written. Do not rewrite, shorten or add spoken lines.
-- Generate accurate, speech-synchronized subtitles throughout the entire video, including B-roll. Use compact, high-contrast, mobile-readable text in one or two lines inside the lower-middle safe area. Keep subtitles clear of the persistent title, avatar face and important visuals.
+- Generate accurate, speech-synchronized subtitles throughout the entire video, including B-roll. Use compact, high-contrast, mobile-readable text in one or two lines. Keep the complete subtitle block within 50–65% of frame height measured from the top (960–1248 px on a 1920 px frame), horizontally centered within the central 70% of frame width. Never place subtitle text below 65% frame height: reserve the bottom 35% for platform descriptions and controls, and keep clear of right-side action buttons. Compose the presenter and B-roll around this fixed caption zone so text never covers the face, persistent title or essential visuals. Preserve identical caption placement across all scenes and transitions. This is a conservative production layout, not a guarantee for every app UI; visually check first/middle/last captions in exported frames.
 - Do not add any watermark, including a HeyGen watermark.
 - Maintain a clean, polished and professional AI-news reel aesthetic.
