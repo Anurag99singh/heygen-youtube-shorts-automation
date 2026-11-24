@@ -21,7 +21,7 @@
     "shortDescription": "Approved, captioned Shorts"
   },
   "name": "heygen-shorts",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Approval-based Shorts production ending at a verified Gmail distribution handoff.",
   "author": {
     "name": "Anurag Singh",

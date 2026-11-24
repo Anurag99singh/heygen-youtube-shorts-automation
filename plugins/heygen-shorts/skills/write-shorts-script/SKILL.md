@@ -45,4 +45,6 @@ Whenever an avatar is on screen, show only the avatar in the consistent studio, 
 Before saving, check all scene VISUAL fields against these rules; the footer cannot repair a contradictory scene description. Keep the existing four scenes, narration/source standards, 30–35-second target, voice, manual approvals and email handoff. The Gemini Tasks sample supplies visual direction only, not claims, a new topic, a five-scene requirement or an exact-35-second mandate.
 
 ## Subtitle placement
-Use the fixed template central caption zone: entire text block at 50–65% frame height, centered in the central70% width, bottom35% reserved for platform overlays. Frame the avatar and B-roll around it; keep title and face unobstructed. No lower-third/bottom subtitles. Check actual exported placement; prompt compliance alone is not proof.
+Use the fixed template central caption zone: entire text block at 48–62% frame height, centered in the central70% width, bottom35% reserved for platform overlays. Frame the avatar and B-roll around it; keep title and face unobstructed. No lower-third/bottom subtitles. Check actual exported placement; prompt compliance alone is not proof.
+
+Subtitle QA must inspect the actual caption layer at x50%/y55% middle alignment. Override bottom defaults and remove duplicate bottom tracks. A smaller caption at the bottom fails. Preserve assets/audio for subtitle-only corrections.
