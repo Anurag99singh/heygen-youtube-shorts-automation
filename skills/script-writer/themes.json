@@ -1,0 +1,12 @@
+{
+  "Editorial 2D": {
+    "title": "Dark-ink horizontal banner; centered warm-white bold serif title, approximately44px. One continuous overlay, fixed position, first through last frame.",
+    "broll": "Warm off-white paper with subtle texture; dark ink, muted blue, sage green and restrained yellow. Centered flat vector objects, clean outlines, serif headings and sans-serif labels. Meaningful smooth slides, line drawing, flowing arrows and sequential reveals. One action at a time; hold the finished diagram. Reuse the same object designs across distinct scenes. No photorealistic footage or3D CGI.",
+    "captions": "Clean dark-ink sans-serif on light paper, warm-white on dark studio; discreet contrasting backing when needed. Stable word positions, no flashing or word recoloring."
+  },
+  "Cinematic 3D": {
+    "title": "Clean bold modern sans-serif title, approximately46px; white with subtle shadow or discreet dark translucent backing. Fixed near the top with breathing room, continuous first through last frame.",
+    "broll": "Photorealistic3D CGI with premium technology-documentary/product-commercial quality. Realistic materials, natural lighting/shadows, subtle reflections, cinematic depth of field and controlled dolly/track/close-up camera moves. Sharp believable professional interfaces and dashboards; conceptual UI labeled illustrative, never invented product evidence. Show user action \u2192 system process \u2192 result with restrained data-flow animations and concise editable labels. Natural pace; no cartoons, plastic-looking objects, stock footage, generic robots, glowing brains, random holograms, excessive neon/glitch/spinning effects or unreadable screens.",
+    "captions": "Clean modern white sans-serif with subtle shadow or discreet dark backing; restrained warm-yellow accents only in static B-roll labels, never flashing/recoloring spoken words."
+  }
+}

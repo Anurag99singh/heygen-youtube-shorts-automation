@@ -86,11 +86,9 @@
 
 Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 
-- Use a dark-ink horizontal banner with a centered warm-white, bold serif title, approximately size 44. Keep one continuous title overlay from first to last frame, including transitions.
-- Keep it on one line where possible.
-- Position it slightly below the top edge with comfortable spacing.
-- Maintain consistent placement, size and style throughout.
-- Ensure it does not cover the avatar's face or important visuals.
+{{TITLE_STYLE}}
+
+- Keep the title clear of the face and central subtitles, in the same position throughout all scenes and transitions.
 
 **TEXT CARDS AND CALLOUTS:**
 
@@ -108,17 +106,14 @@ Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 - Use natural facial expressions, realistic blinking and subtle, anatomically correct hand gestures.
 - Avoid exaggerated expressions or unnecessary movements.
 
-**B-ROLL:**
+**SELECTED B-ROLL THEME:** {{THEME_NAME}}
 
-- Use premium 2D editorial motion graphics illustrating {{BROLL_SUBJECTS}}; no realistic stock footage, photorealistic cutaways or 3D imagery.
-- Use a warm off-white paper background with subtle texture; dark ink, muted blue, soft sage green and restrained warm-yellow accents throughout.
-- Use elegant readable serif headings and clean sans-serif labels and subtitles. Keep centered, balanced compositions with generous spacing.
-- Draw recognizable flat vector objects with clean outlines, soft colors and minimal detail. Keep the same object designs, palette, typography and animation behavior across scenes.
-- Explain each narrated action through meaningful object movement: smooth slides, progressive reveals, simple line drawing, flowing arrows and sequential infographic steps. Animate one important action at a time and hold completed diagrams long enough to understand.
-- Reveal text progressively in stable positions, without flashing, color-changing words or distracting bounce. Conceptual interfaces must be labeled illustrative and must not imply unsupported functionality.
-- Make each scene visually distinct, with no repeated or recycled B-roll.
+{{THEME_DIRECTIONS}}
+
+- Topic-specific subjects: {{BROLL_SUBJECTS}}.
 - Clearly demonstrate {{DEMONSTRATION_PROCESS}}.
-- Avoid generic robots, glowing brains, holographic heads and unrelated futuristic AI visuals.
+- Keep all extra diagrams, icons and labels exclusively in B-roll, never beside or over the presenter.
+- Labels and callouts must not compete with the central subtitle block.
 
 **AUDIO AND EDITING:**
 
@@ -127,13 +122,19 @@ Display the title **"{{VIDEO_TITLE}}"** throughout the entire video.
 - Use smooth transitions between scenes.
 - Maintain a natural speaking pace without rushing the final scene.
 
+**SUBTITLES — ONE CENTRAL LAYER:**
+
+- Burn accurate English subtitles into the entire video, including B-roll, synchronized with the actual spoken audio.
+- Create ONE custom subtitle/text overlay with middle alignment, horizontal center50%, vertical center52% of frame height (approximately y998px on1080x1920). Keep the complete one/two-line text block within45–60% height and central70% width. Never use lower-third/bottom alignment. Disable native bottom captions and remove duplicates.
+- Reveal each spoken word in sync with its audio onset, progressively filling a stable short phrase (normally3–6 words). Keep earlier words visible until the phrase ends, then replace cleanly. No moving baselines, flashing, bouncing, word-color changes or character typing ahead of speech. Use readable sentence case and consistent size/line spacing.
+- Theme-matched caption styling: {{CAPTION_STYLE}}
+- Reserve the central caption zone in the composition BEFORE arranging the presenter and B-roll. Frame avatar eyes/face above the zone so captions sit over clear torso/background, never face or mouth. Place essential B-roll action and labels above/beside the zone. Keep the permanent title separate. Do not solve collisions by dropping captions toward the bottom.
+- Use native middle positioning only if supported. Otherwise a replacement custom synchronized overlay is explicitly allowed from initial production; preserve narration and assets. If neither method works, report the limitation rather than exporting bottom captions as compliant.
+- Before final export inspect actual first/middle/last spoken captions and a B-roll transition. Verify layer coordinates, audio timing, contrast and absence of duplicate bottom tracks. Prompt text or transcript alone is not proof.
+
 **IMPORTANT:**
 
 - Use the supplied narration exactly as written. Do not rewrite, shorten or add spoken lines.
-- Generate accurate, speech-synchronized subtitles throughout the entire video, including B-roll. Use compact, high-contrast, mobile-readable text in one or two lines. Keep the complete subtitle block within 48–62% of frame height measured from the top (922–1190 px on a 1920 px frame), horizontally centered within the central 70% of frame width. Never place subtitle text below 62% frame height: reserve the bottom 35% for platform descriptions and controls, and keep clear of right-side action buttons. Compose the presenter and B-roll around this fixed caption zone so text never covers the face, persistent title or essential visuals. Preserve identical caption placement across all scenes and transitions. This is a conservative production layout, not a guarantee for every app UI; visually check first/middle/last captions in exported frames.
+- Use the same Anshul-17 narration continuously across presenter and B-roll, with only natural brief pauses.
 - Do not add any watermark, including a HeyGen watermark.
-- Maintain a clean, polished and professional AI-news reel aesthetic.
-
-**CAPTION LAYER POSITION — REQUIRED:**
-
-Center the actual burned-in subtitle layer at x=50%, y=55% of the frame. Use middle alignment, maximum two lines, with every glyph inside y=48–62%. Override the engine default bottom alignment; reducing caption size alone is not a position fix. Disable/remove any duplicate bottom caption layer. Verify the rendered first, middle and last captions, not just the prompt or transcript. If positioning cannot be applied, report the limitation rather than deliver bottom-aligned captions as compliant.
+- Keep the selected theme consistent throughout; do not mix the two B-roll styles.

@@ -112,3 +112,9 @@ For subsequent validated handoffs, I authorize automatic scheduling to both conf
 ## Current implementation status
 
 Production repository and Sheet support the email handoff. VID-003 has been emailed with its stable MP4. The producer does not schedule Buffer posts. Anshul’s receiving automation has **not** been installed or tested from this account; his sign-ins, channel selection, initial draft review and activation occur in his ChatGPT Work account. Availability of Gmail events and unattended Buffer media transfer must be checked there.
+
+## Selecting the B-roll theme
+In Video Queue, choose **AN — Visual Theme** before script preparation:
+- **Editorial 2D:** warm-paper flat vector illustrations, ink/blue/sage/yellow, progressive process animation.
+- **Cinematic 3D:** photorealistic CGI, realistic interfaces, natural light and restrained cinematic camera movement.
+Blank AN uses **Settings → Default visual theme**, initially Editorial 2D. Both use clean presenter shots, continuous title and central word-synchronized subtitles. Change the selector before drafting; changing a reviewed script requires a new script review. Completed/sent videos are preserved.
